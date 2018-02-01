@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Bluetooth Android Arduino</string>
+    <string name="statusMensagem">Olá</string>
+</resources>
