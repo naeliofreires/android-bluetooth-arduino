@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     //
     Button buttonAparelhosPareados;
     Button buttonProcurarDispositivos;
+    Button buttonHabilitarVisibilidade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,17 @@ public class MainActivity extends AppCompatActivity {
                 discoverDevices();
             }
         });
+
+        /**
+         * HABILITAR VISIBILIDADE DO BLUETOOTH*/
+        this.buttonHabilitarVisibilidade = findViewById(R.id.buttonHabilitarVisibilidade);
+
+        this.buttonHabilitarVisibilidade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                enableVisibility();
+            }
+        });
     }
 
     // feedback para o informar que o bluetooth foi ativado ou não
@@ -109,6 +121,14 @@ public class MainActivity extends AppCompatActivity {
     private void discoverDevices() {
         Intent searchPairedDevicesIntent = new Intent(this, ProcurarDispositivosActivity.class);
         startActivityForResult(searchPairedDevicesIntent, SELECT_DISCOVERED_DEVICE);
+    }
+
+    /**
+     * HABILITAR VISIBILIDADE*/
+    public void enableVisibility() {
+        Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 30);
+        startActivity(discoverableIntent);
     }
 
 
