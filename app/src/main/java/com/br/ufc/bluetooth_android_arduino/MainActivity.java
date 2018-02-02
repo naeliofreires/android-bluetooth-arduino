@@ -4,11 +4,9 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     //
     Button buttonAparelhosPareados;
+    Button buttonProcurarDispositivos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.statusMessage = findViewById(R.id.statusMensagem);
 
-        BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+        final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 
         //  verificando se o bluetooth existe e esta funcionando no aparelho
         if (btAdapter == null) {
@@ -50,16 +49,24 @@ public class MainActivity extends AppCompatActivity {
 
 
         /**
-         * AÇÃO DE LISTAR DISPOSTIVOS PAREADOS
-         * **/
-
+         * AÇÃO DE LISTAR DISPOSTIVOS PAREADOS*/
         this.buttonAparelhosPareados = findViewById(R.id.buttonDispositivosPareados);
 
         this.buttonAparelhosPareados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent searchPairedDevicesIntent = new Intent(MainActivity.this, AparelhosPareadosActivity.class);
-                startActivityForResult(searchPairedDevicesIntent, SELECT_PAIRED_DEVICE);
+                openPairedDevices();
+            }
+        });
+
+        /**
+         * AÇÃO DE BUSCAR NOVOS DISPOSITIVOS*/
+        this.buttonProcurarDispositivos = findViewById(R.id.buttonProcurarDispositivos);
+
+        this.buttonProcurarDispositivos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                discoverDevices();
             }
         });
     }
@@ -79,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 statusMessage.setText("Bluetooth não ativado :(");
             }
         }
-        else if(requestCode == SELECT_PAIRED_DEVICE) {
+        else if(requestCode == SELECT_PAIRED_DEVICE || requestCode == SELECT_DISCOVERED_DEVICE) {
             if(resultCode == RESULT_OK) {
                 statusMessage.setText("Você selecionou " + data.getStringExtra("btDevName") + "\n"
                         + data.getStringExtra("btDevAddress"));
@@ -88,6 +95,20 @@ public class MainActivity extends AppCompatActivity {
                 statusMessage.setText("Nenhum dispositivo selecionado :(");
             }
         }
+    }
+
+    /**
+     * TELA DE DISPOSTIVOS PAREADOS*/
+    private void openPairedDevices(){
+        Intent searchPairedDevicesIntent = new Intent(MainActivity.this, AparelhosPareadosActivity.class);
+        startActivityForResult(searchPairedDevicesIntent, SELECT_PAIRED_DEVICE);
+    }
+
+    /**
+     * TELA DE BUSCA DE DISPOSITIVOS*/
+    private void discoverDevices() {
+        Intent searchPairedDevicesIntent = new Intent(this, ProcurarDispositivosActivity.class);
+        startActivityForResult(searchPairedDevicesIntent, SELECT_DISCOVERED_DEVICE);
     }
 
 
