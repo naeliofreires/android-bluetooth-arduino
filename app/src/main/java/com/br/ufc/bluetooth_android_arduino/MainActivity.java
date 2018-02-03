@@ -3,25 +3,31 @@ package com.br.ufc.bluetooth_android_arduino;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    //  valores serão utilizados durante o processo de habilitação do bluetooth.
+    //  Valores serão utilizados durante o processo de habilitação do bluetooth.
     public static int ENABLE_BLUETOOTH = 1;
     public static int SELECT_PAIRED_DEVICE = 2;
     public static int SELECT_DISCOVERED_DEVICE = 3;
 
-    //  exibir mensagem ao usuario
+    //  Exibir mensagem ao usuario.
     static TextView statusMessage;
 
     //
     Button buttonAparelhosPareados;
     Button buttonProcurarDispositivos;
     Button buttonHabilitarVisibilidade;
+    Button buttonEnviarMensagem;
+
+    ConnectionThread connect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
 
         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        //  verificando se o bluetooth existe e esta funcionando no aparelho
+        //  Verificando se o Bluetooth existe e esta funcionando no aparelho
         if (btAdapter == null) {
-            statusMessage.setText("Que pena! Hardware Bluetooth não está funcionando :(");
+            statusMessage.setText("Que pena! Hardware Bluetooth não está funcionando.");
         } else {
-            statusMessage.setText("Ótimo! Hardware Bluetooth está funcionando :)");
+            statusMessage.setText("Ótimo! Hardware Bluetooth está funcionando.");
         }
 
         //  ativando o  bluetooth com a permissão do usuário
@@ -81,9 +87,19 @@ public class MainActivity extends AppCompatActivity {
                 enableVisibility();
             }
         });
+
+        /** ENVIAR MENSAGEM **/
+        this.buttonEnviarMensagem = findViewById(R.id.buttonEnviar);
+
+        this.buttonEnviarMensagem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendMessage();
+            }
+        });
     }
 
-    // feedback para o informar que o bluetooth foi ativado ou não
+    /** FEEDBACK PARA INFORMAR SE O BLUETOOTH FOI ATIVADO **/
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -102,6 +118,13 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK) {
                 statusMessage.setText("Você selecionou " + data.getStringExtra("btDevName") + "\n"
                         + data.getStringExtra("btDevAddress"));
+                try {
+                    connect = new ConnectionThread(data.getStringExtra("btDevAddress"));
+                    connect.start();
+                    //Toast.makeText(this,"Conexão Realizada com Sucesso!", Toast.LENGTH_LONG).show();
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
             }
             else {
                 statusMessage.setText("Nenhum dispositivo selecionado :(");
@@ -109,27 +132,49 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * TELA DE DISPOSTIVOS PAREADOS*/
+    /** TELA DE DISPOSTIVOS PAREADOS **/
     private void openPairedDevices(){
         Intent searchPairedDevicesIntent = new Intent(MainActivity.this, AparelhosPareadosActivity.class);
         startActivityForResult(searchPairedDevicesIntent, SELECT_PAIRED_DEVICE);
     }
 
-    /**
-     * TELA DE BUSCA DE DISPOSITIVOS*/
+    /** TELA DE BUSCA DE DISPOSITIVOS **/
     private void discoverDevices() {
         Intent searchPairedDevicesIntent = new Intent(this, ProcurarDispositivosActivity.class);
         startActivityForResult(searchPairedDevicesIntent, SELECT_DISCOVERED_DEVICE);
     }
 
-    /**
-     * HABILITAR VISIBILIDADE*/
+    /** HABILITAR VISIBILIDADE  **/
     public void enableVisibility() {
         Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
         discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 30);
         startActivity(discoverableIntent);
     }
+
+    /** ENVIAR MENSAGEM **/
+    public void sendMessage() {
+        EditText messageBox = findViewById(R.id.editText);
+        String messageBoxString = messageBox.getText().toString();
+        byte[] data =  messageBoxString.getBytes();
+        connect.write(data);
+
+        messageBox.setText(""); // limpando a caixa de texto
+    }
+    public static Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+            Bundle bundle = msg.getData();
+            byte[] data = bundle.getByteArray("data");
+            String dataString= new String(data);
+
+            if(dataString.equals("---N"))
+                statusMessage.setText("Ocorreu um erro durante a conexão D:");
+            else if(dataString.equals("---S"))
+                statusMessage.setText("Conectado :D");
+
+        }
+    };
 
 
 }

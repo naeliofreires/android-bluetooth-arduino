@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -25,28 +25,25 @@
         android:id="@+id/buttonDispositivosPareados"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="232dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_alignEnd="@+id/buttonProcurarDispositivos"
+        android:layout_alignLeft="@+id/buttonProcurarDispositivos"
+        android:layout_alignRight="@+id/buttonProcurarDispositivos"
+        android:layout_alignStart="@+id/buttonProcurarDispositivos"
+        android:layout_below="@+id/buttonProcurarDispositivos"
         android:text="Dispositivos Pareados "
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonProcurarDispositivos"
         android:layout_width="178dp"
         android:layout_height="47dp"
-        android:layout_alignBottom="@+id/buttonDispositivosPareados"
-        android:layout_alignEnd="@+id/buttonDispositivosPareados"
-        android:layout_alignLeft="@+id/buttonDispositivosPareados"
-        android:layout_alignRight="@+id/buttonDispositivosPareados"
-        android:layout_alignStart="@+id/buttonDispositivosPareados"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_alignEnd="@+id/buttonHabilitarVisibilidade"
+        android:layout_alignLeft="@+id/buttonHabilitarVisibilidade"
+        android:layout_alignRight="@+id/buttonHabilitarVisibilidade"
+        android:layout_alignStart="@+id/buttonHabilitarVisibilidade"
+        android:layout_below="@+id/buttonHabilitarVisibilidade"
         android:text="Buscar Dispositivos"
         app:layout_constraintBottom_toTopOf="@+id/buttonDispositivosPareados"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,18 +53,37 @@
         android:id="@+id/buttonHabilitarVisibilidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/buttonProcurarDispositivos"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignStart="@+id/buttonProcurarDispositivos"
         android:layout_below="@+id/statusMensagem"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
         android:text="Habilitar Visibilidade"
         app:layout_constraintBottom_toTopOf="@+id/buttonProcurarDispositivos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
+        android:ems="10"
+        android:inputType="textPersonName"/>
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/buttonEnviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
+        android:layout_toEndOf="@+id/statusMensagem"
+        android:layout_toRightOf="@+id/statusMensagem"
+        android:text="Enviar" />
+
+
+</RelativeLayout>
