@@ -18,16 +18,23 @@ public class MainActivity extends AppCompatActivity {
     public static int SELECT_PAIRED_DEVICE = 2;
     public static int SELECT_DISCOVERED_DEVICE = 3;
 
-    //  Exibir mensagem ao usuario.
-    static TextView statusMessage;
+    /**
+     * Show The Message
+     */
+    private static TextView statusMessage;
 
-    //
-    Button buttonAparelhosPareados;
-    Button buttonProcurarDispositivos;
-    Button buttonHabilitarVisibilidade;
-    Button buttonEnviarMensagem;
+    /**
+     * Buttons
+     */
+    private Button buttonAparelhosPareados;
+    private Button buttonProcurarDispositivos;
+    private Button buttonHabilitarVisibilidade;
+    private Button buttonEnviarMensagem;
 
-    ConnectionThread connect;
+    /**
+     * ConnectionThread
+     */
+    private ConnectionThread connect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         /**
-         * AÇÃO DE LISTAR DISPOSTIVOS PAREADOS*/
+         * Action of List Paired Devices
+         */
         this.buttonAparelhosPareados = findViewById(R.id.buttonDispositivosPareados);
 
         this.buttonAparelhosPareados.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /**
-         * AÇÃO DE BUSCAR NOVOS DISPOSITIVOS*/
+         * Action of Seacher News Devices
+         */
         this.buttonProcurarDispositivos = findViewById(R.id.buttonProcurarDispositivos);
 
         this.buttonProcurarDispositivos.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /**
-         * HABILITAR VISIBILIDADE DO BLUETOOTH*/
+         * Enable Visibility Of Bluetooth
+         */
         this.buttonHabilitarVisibilidade = findViewById(R.id.buttonHabilitarVisibilidade);
 
         this.buttonHabilitarVisibilidade.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +98,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /** ENVIAR MENSAGEM **/
+        /**
+         * Send Message
+         */
         this.buttonEnviarMensagem = findViewById(R.id.buttonEnviar);
 
         this.buttonEnviarMensagem.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +111,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /** FEEDBACK PARA INFORMAR SE O BLUETOOTH FOI ATIVADO **/
+    /**
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -132,26 +149,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /** TELA DE DISPOSTIVOS PAREADOS **/
+    /**
+     * View Of Paired Devices
+     */
     private void openPairedDevices(){
-        Intent searchPairedDevicesIntent = new Intent(MainActivity.this, AparelhosPareadosActivity.class);
+        Intent searchPairedDevicesIntent = new Intent(MainActivity.this, PairedDevicesActivity.class);
         startActivityForResult(searchPairedDevicesIntent, SELECT_PAIRED_DEVICE);
     }
 
-    /** TELA DE BUSCA DE DISPOSITIVOS **/
+    /**
+     * View Of Seacher Of Devices
+     */
     private void discoverDevices() {
         Intent searchPairedDevicesIntent = new Intent(this, ProcurarDispositivosActivity.class);
         startActivityForResult(searchPairedDevicesIntent, SELECT_DISCOVERED_DEVICE);
     }
 
-    /** HABILITAR VISIBILIDADE  **/
+    /**
+     *  Enable Visibility
+     */
     public void enableVisibility() {
         Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
         discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 30);
         startActivity(discoverableIntent);
     }
 
-    /** ENVIAR MENSAGEM **/
+    /**
+     * Send Message
+     */
     public void sendMessage() {
         EditText messageBox = findViewById(R.id.editText);
         String messageBoxString = messageBox.getText().toString();
@@ -160,6 +185,10 @@ public class MainActivity extends AppCompatActivity {
 
         messageBox.setText(""); // limpando a caixa de texto
     }
+
+    /**
+     *
+     */
     public static Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {

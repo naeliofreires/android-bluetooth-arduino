@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AparelhosPareadosActivity" />
+        <activity android:name=".PairedDevicesActivity" />
         <activity android:name=".ProcurarDispositivosActivity"
                   android:label="Discovered Devices"
                   android:parentActivityName="MainActivity"></activity>

@@ -85,5 +85,4 @@
         android:layout_toRightOf="@+id/statusMensagem"
         android:text="Enviar" />
 
-
 </RelativeLayout>
