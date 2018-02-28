@@ -1,22 +1,27 @@
 package com.br.ufc.bluetooth_android_arduino;
 
 import android.bluetooth.BluetoothAdapter;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    //  Valores serão utilizados durante o processo de habilitação do bluetooth.
+    /***********************************************/
     public static int ENABLE_BLUETOOTH = 1;
     public static int SELECT_PAIRED_DEVICE = 2;
     public static int SELECT_DISCOVERED_DEVICE = 3;
+    /***********************************************/
 
     /**
      * Show The Message
@@ -30,17 +35,56 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonProcurarDispositivos;
     private Button buttonHabilitarVisibilidade;
     private Button buttonEnviarMensagem;
+    private Button buttonOpenDialog;
 
     /**
      * ConnectionThread
      */
     private ConnectionThread connect;
 
+    /**
+     * AlertDialog
+     */
+    private AlertDialog.Builder dialogForConnectionBluetooth;
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /**
+         * Alert Dialog
+         */
+        this.buttonOpenDialog = findViewById(R.id.buttonOpenDialog);
+
+        this.buttonOpenDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialogForConnectionBluetooth = new AlertDialog.Builder(MainActivity.this);
+                dialogForConnectionBluetooth.setTitle("Conecte-se ao bluetooth...");
+                dialogForConnectionBluetooth.setCancelable(false);
+                dialogForConnectionBluetooth.setIcon(R.drawable.ic_launcher_background);
+
+                dialogForConnectionBluetooth.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),"É necessário realizar uma conexão...",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                dialogForConnectionBluetooth.create();
+                dialogForConnectionBluetooth.show();
+            }
+        });
+
+        /**
+         *
+         */
         this.statusMessage = findViewById(R.id.statusMensagem);
 
         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -187,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     *  Handler
      */
     public static Handler handler = new Handler() {
         @Override
