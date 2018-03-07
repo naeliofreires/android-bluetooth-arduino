@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.Message;
 
 import java.io.IOException;
@@ -17,7 +18,7 @@ import java.util.UUID;
  * Created by naelio on 02/02/2018.
  */
 
-public class ConnectionThread extends Thread{
+public class ConnectionThread extends Thread {
 
     BluetoothSocket btSocket = null;
     BluetoothServerSocket btServerSocket = null;
@@ -47,7 +48,6 @@ public class ConnectionThread extends Thread{
 
         // SE FOR ATUAR COMO SERVIDOR
         if(this.server){
-
             try{
                 //USADO PARA ESTABELECER CONEXÃO, FICARÁ EM MODO DE ESPERA ATÉ A CONEXÃO SER REALIZADA
                 btServerSocket = btAdapter.listenUsingRfcommWithServiceRecord("Super Bluetooth", UUID.fromString(myUUID));
@@ -117,18 +117,17 @@ public class ConnectionThread extends Thread{
         Bundle bundle = new Bundle();
         bundle.putByteArray("data", data);
         message.setData(bundle);
-        MainActivity.handler.sendMessage(message);
+//        MainActivity.handler.sendMessage(message);
     }
 
-    /** Escrever Dados **/
+    /**
+     * Escrever Dados
+     */
     public void write(byte[] data) {
 
         if(output != null) {
             try {
-
-                // TRANSMITE A MENSAGEM
                 output.write(data);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -149,5 +148,6 @@ public class ConnectionThread extends Thread{
         }
         running = false;
     }
+
 }
 
