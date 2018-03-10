@@ -30,9 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonAparelhosPareados;
     private Button buttonProcurarDispositivos;
     private Button buttonHabilitarVisibilidade;
-    private Button buttonEnviarMensagem;
     private Button buttonOpenDialog;
-    private Button buttonActivityControlleRemoto;
 
     /**
      * ConnectionThread
@@ -65,16 +63,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 configuratioDialog();
             }
-        });
-
-        /**
-         * Activity Retrole Remoto
-         */
-        this.buttonActivityControlleRemoto = findViewById(R.id.buttonControllerRemoto);
-
-        this.buttonActivityControlleRemoto.setOnClickListener((v)->{
-            Intent intentControleRemoto = new Intent(this, ControlleRemotoActivity.class);
-            startActivity(intentControleRemoto);
         });
 
         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -116,13 +104,6 @@ public class MainActivity extends AppCompatActivity {
         this.buttonHabilitarVisibilidade = findViewById(R.id.buttonHabilitarVisibilidade);
 
         this.buttonHabilitarVisibilidade.setOnClickListener((v)-> { enableVisibility(); });
-
-        /**
-         * Send Message
-         */
-        this.buttonEnviarMensagem = findViewById(R.id.buttonEnviar);
-
-        this.buttonEnviarMensagem.setOnClickListener((v)-> { sendMessage(); });
     }
 
     void configuratioDialog(){
@@ -227,18 +208,6 @@ public class MainActivity extends AppCompatActivity {
         Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
         discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 30);
         startActivity(discoverableIntent);
-    }
-
-    /**
-     * Send Message
-     */
-    public void sendMessage() {
-        EditText messageBox = findViewById(R.id.editText);
-        String messageBoxString = messageBox.getText().toString();
-        byte[] data =  messageBoxString.getBytes();
-        connect.write(data);
-
-        messageBox.setText("");
     }
 
     /*  Define um receptor para o evento de descoberta de dispositivo.

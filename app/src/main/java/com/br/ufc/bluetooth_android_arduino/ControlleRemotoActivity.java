@@ -8,7 +8,15 @@ import java.util.ArrayList;
 
 public class ControlleRemotoActivity extends AppCompatActivity {
 
-    private Button buttonCima, buttonTras, buttonEsquerda, buttonDireita, buttonExecutar;
+    private Button buttonCima,
+            buttonTras,
+            buttonEsquerda,
+            buttonDireita,
+            buttonExecutar,
+            buttonUp,
+            buttonDown,
+            buttonAcenar,
+            buttonDesligar;
 
     private ArrayList<String> comandos;
     private ConnectionThread connect;
@@ -18,11 +26,18 @@ public class ControlleRemotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controlle_remoto);
 
+        this.buttonExecutar = findViewById(R.id.buttonExecutar);
+
         this.buttonCima = findViewById(R.id.buttonCima);
         this.buttonTras = findViewById(R.id.buttonTras);
         this.buttonDireita = findViewById(R.id.buttonDireita);
         this.buttonEsquerda = findViewById(R.id.buttonEsquerda);
-        this.buttonExecutar = findViewById(R.id.buttonExecutar);
+
+        this.buttonUp = findViewById(R.id.buttonUp);
+        this.buttonDown = findViewById(R.id.buttonDown);
+
+        this.buttonAcenar = findViewById(R.id.buttonTchau);
+        this.buttonDesligar = findViewById(R.id.buttonDesligar);
 
         this.comandos = new ArrayList<String>();
 
@@ -33,21 +48,28 @@ public class ControlleRemotoActivity extends AppCompatActivity {
             connect.start();
         }
 
-        this.buttonCima.setOnClickListener((v)->{
-            this.comandos.add("C");
+        // foward_();
+        this.buttonCima.setOnClickListener((v)-> this.comandos.add("w"));
+        // back_();
+        this.buttonTras.setOnClickListener((v)-> this.comandos.add("s"));
+        // turn_right_();
+        this.buttonDireita.setOnClickListener((v)-> this.comandos.add("d"));
+        // turn_left_();
+        this.buttonEsquerda.setOnClickListener((v)-> this.comandos.add("a"));
+
+        //stand_();
+        this.buttonUp.setOnClickListener((v)-> this.comandos.add("e"));
+        // sit_();
+        this.buttonDown.setOnClickListener((v)-> this.comandos.add("q"));
+        // wave_();
+        this.buttonAcenar.setOnClickListener((v)-> this.comandos.add("b"));
+        // shutdown();
+        this.buttonDesligar.setOnClickListener((v)-> this.comandos.add("x"));
+
+        this.buttonExecutar.setOnClickListener((v)-> {
+            sendMessage();
+            this.comandos = new ArrayList<>();
         });
-
-        this.buttonTras.setOnClickListener((v)->{
-            this.comandos.add("T");
-        });
-
-        this.buttonDireita.setOnClickListener((v)->{
-            this.comandos.add("D");
-        });
-
-        this.buttonEsquerda.setOnClickListener((v)-> this.comandos.add("E"));
-
-        this.buttonExecutar.setOnClickListener((v)-> sendMessage());
     }
 
     public void sendMessage() {

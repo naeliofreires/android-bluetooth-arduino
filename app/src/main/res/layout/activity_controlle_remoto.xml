@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="23dp"
         android:text="cima" />
 
     <Button
@@ -53,9 +53,48 @@
         android:id="@+id/buttonExecutar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonTchau"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/buttonDesligar"
+        android:layout_marginBottom="87dp"
+        android:text="GO!" />
+
+    <Button
+        android:id="@+id/buttonUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/buttonEsquerda"
+        android:layout_alignRight="@+id/buttonEsquerda"
         android:layout_below="@+id/buttonTras"
-        android:layout_marginTop="86dp"
+        android:layout_marginTop="21dp"
+        android:text="UP" />
+
+    <Button
+        android:id="@+id/buttonDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonUp"
+        android:layout_alignBottom="@+id/buttonUp"
+        android:layout_alignLeft="@+id/buttonDireita"
+        android:layout_alignStart="@+id/buttonDireita"
+        android:text="DOWN" />
+
+    <Button
+        android:id="@+id/buttonTchau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonTras"
+        android:layout_alignStart="@+id/buttonTras"
+        android:layout_centerVertical="true"
+        android:text="acenar" />
+
+    <Button
+        android:id="@+id/buttonDesligar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="17dp"
         android:layout_toEndOf="@+id/buttonEsquerda"
         android:layout_toRightOf="@+id/buttonEsquerda"
-        android:text="GO!" />
+        android:text="desligar" />
 </RelativeLayout>
