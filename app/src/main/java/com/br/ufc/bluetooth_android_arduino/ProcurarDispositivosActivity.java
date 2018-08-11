@@ -19,34 +19,8 @@ import android.widget.ListView;
 public class ProcurarDispositivosActivity extends ListActivity {
 
     ArrayAdapter<String> arrayAdapter;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        setListAdapter(arrayAdapter);
-
-        /*  Pede permissao de localizaçao ao usuario.
-        */
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1001);
-        }
-
-        /*  Usa o adaptador Bluetooth padrão para iniciar o processo de descoberta.
-         */
-        BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
-        btAdapter.startDiscovery();
-
-        /*  Cria um filtro que captura o momento em que um dispositivo é descoberto.
-            Registra o filtro e define um receptor para o evento de descoberta.
-         */
-        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-        registerReceiver(receiver, filter);
-    }
-
     /*  Define um receptor para o evento de descoberta de dispositivo.
-      */
+     */
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
 
         /*  Este método é executado sempre que um novo dispositivo for descoberto.
@@ -66,6 +40,30 @@ public class ProcurarDispositivosActivity extends ListActivity {
         }
     };
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        setListAdapter(arrayAdapter);
+
+        /*  Pede permissao de localizaçao ao usuario.
+         */
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1001);
+        }
+
+        /*  Usa o adaptador Bluetooth padrão para iniciar o processo de descoberta.
+         */
+        BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+        btAdapter.startDiscovery();
+
+        /*  Cria um filtro que captura o momento em que um dispositivo é descoberto.
+            Registra o filtro e define um receptor para o evento de descoberta.
+         */
+        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        registerReceiver(receiver, filter);
+    }
 
     /*  Este método é executado quando o usuário seleciona um elemento da lista.
      */
@@ -74,7 +72,7 @@ public class ProcurarDispositivosActivity extends ListActivity {
 
         String item = (String) getListAdapter().getItem(position);
         String devName = item.substring(0, item.indexOf("\n"));
-        String devAddress = item.substring(item.indexOf("\n")+1, item.length());
+        String devAddress = item.substring(item.indexOf("\n") + 1, item.length());
 
         /*  Utiliza um Intent para encapsular as informações de nome e endereço.
             Informa à Activity principal que tudo foi um sucesso!
@@ -83,12 +81,14 @@ public class ProcurarDispositivosActivity extends ListActivity {
         Intent returnIntent = new Intent();
         returnIntent.putExtra("btDevName", devName);
         returnIntent.putExtra("btDevAddress", devAddress);
+
         setResult(RESULT_OK, returnIntent);
+
         finish();
     }
 
     /*  Executado quando a Activity é finalizada.
-    */
+     */
     @Override
     protected void onDestroy() {
 

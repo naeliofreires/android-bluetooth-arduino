@@ -32,11 +32,13 @@ public class PairedDevicesActivity extends AppCompatActivity {
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
 
-        List<String> aparelhos = new ArrayList<String>();
-        for(BluetoothDevice bt : pairedDevices)
-            aparelhos.add(bt.getName() + "\n" + bt.getAddress());
+        List<String> aparelhos = new ArrayList<>();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        for (BluetoothDevice bt : pairedDevices) {
+            aparelhos.add(bt.getName() + "\n" + bt.getAddress());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getApplicationContext(),
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1,
@@ -45,22 +47,21 @@ public class PairedDevicesActivity extends AppCompatActivity {
 
         this.listView.setAdapter(adapter);
 
-        this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        this.listView.setOnItemClickListener((adapterView, view, position, l) -> {
 
-                String item = listView.getItemAtPosition(position).toString();
+            String item = listView.getItemAtPosition(position).toString();
 
-                String devName = item.substring(0, item.indexOf("\n"));
-                String devAddress = item.substring(item.indexOf("\n")+1, item.length());
+            String devName = item.substring(0, item.indexOf("\n"));
+            String devAddress = item.substring(item.indexOf("\n") + 1, item.length());
 
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("btDevName", devName);
-                returnIntent.putExtra("btDevAddress", devAddress);
-                returnIntent.putExtra("selecionado", "selecionado");
-                setResult(RESULT_OK, returnIntent);
-                finish();
-            }
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("btDevName", devName);
+            returnIntent.putExtra("btDevAddress", devAddress);
+            returnIntent.putExtra("selecionado", "selecionado");
+
+            setResult(RESULT_OK, returnIntent);
+
+            finish();
         });
     }
 }

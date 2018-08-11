@@ -20,12 +20,15 @@ import java.util.UUID;
 
 public class ConnectionThread extends Thread {
 
-    BluetoothSocket btSocket = null;
-    BluetoothServerSocket btServerSocket = null;
-    String btDevAddress = null;
-    String myUUID = "00001101-0000-1000-8000-00805F9B34FB";
-    boolean server;
-    boolean running = false;
+
+    private boolean server;
+    private boolean running = false;
+
+    private String btDevAddress = null;
+    private String myUUID = "00001101-0000-1000-8000-00805F9B34FB";
+
+    private BluetoothSocket btSocket = null;
+    private BluetoothServerSocket btServerSocket = null;
 
     // ENTRADA E SAIDA DE DADOS
     InputStream input = null;

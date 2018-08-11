@@ -2,14 +2,11 @@ package com.br.ufc.bluetooth_android_arduino;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
+import android.os.Handler;
 
 public class SplashActivity extends Activity {
 
-    /** Duration of wait **/
     private final int SPLASH_DISPLAY_LENGTH = 1000;
 
     @Override
@@ -21,16 +18,17 @@ public class SplashActivity extends Activity {
         handle.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mostrarLogin();
+                showSplash();
             }
         }, 3000);
 
     }
 
-    private void mostrarLogin() {
-        Intent intent = new Intent(SplashActivity.this,
-                MainActivity.class);
+    private void showSplash() {
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+
         startActivity(intent);
+
         finish();
     }
 }

@@ -4,16 +4,13 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Buttons
      */
+    private Button buttonOpenDialog;
     private Button buttonAparelhosPareados;
     private Button buttonProcurarDispositivos;
     private Button buttonHabilitarVisibilidade;
-    private Button buttonOpenDialog;
 
     /**
      * ConnectionThread
@@ -40,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * AlertDialog
      */
-    private AlertDialog.Builder dialogForConnectionBluetooth;
     private ArrayAdapter<String> lista_dispositivos;
+    private AlertDialog.Builder dialogForConnectionBluetooth;
 
     /**
      *
@@ -58,12 +55,7 @@ public class MainActivity extends AppCompatActivity {
         this.lista_dispositivos = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         this.buttonOpenDialog = findViewById(R.id.buttonOpenDialog);
 
-        this.buttonOpenDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                configuratioDialog();
-            }
-        });
+        this.buttonOpenDialog.setOnClickListener(view -> configurationDialog());
 
         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -92,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         /**
-         * Action of Seacher News Devices
+         * Action of Searcher News Devices
          */
         this.buttonProcurarDispositivos = findViewById(R.id.buttonProcurarDispositivos);
 
@@ -106,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         this.buttonHabilitarVisibilidade.setOnClickListener((v)-> { enableVisibility(); });
     }
 
-    void configuratioDialog(){
+    void configurationDialog(){
 
         dialogForConnectionBluetooth = new AlertDialog.Builder(MainActivity.this);
         dialogForConnectionBluetooth.setTitle("Conecte-se ao bluetooth...");
@@ -140,9 +132,10 @@ public class MainActivity extends AppCompatActivity {
             builderInner.show();
         });
 
-        dialogForConnectionBluetooth.setNeutralButton("Cancelar",
-                (dialog, which) ->
-                        Toast.makeText(getApplicationContext(),"É necessário realizar uma conexão...",Toast.LENGTH_SHORT).show());
+        dialogForConnectionBluetooth
+                .setNeutralButton
+                        ("Cancelar", (dialog, which) ->
+                                Toast.makeText(getApplicationContext(),"É necessário realizar uma conexão...",Toast.LENGTH_SHORT).show());
 
         dialogForConnectionBluetooth.create();
         dialogForConnectionBluetooth.show();
