@@ -1,4 +1,15 @@
 <resources>
-    <string name="app_name">Bluetooth Android Arduino</string>
+    <string name="app_name">Controller Spider</string>
     <string name="statusMensagem">Desenvolvimento...</string>
+    <string name="desenvolvido">Desenvolvido por Naélio Freires</string>
+    <string name="off">desligar</string>
+    <string name="acenar">acenar</string>
+    <string name="up">subir</string>
+    <string name="down">baixar</string>
+    <string name="run">executar</string>
+    <string name="left">esquerda</string>
+    <string name="right">direita</string>
+    <string name="back">voltar</string>
+    <string name="front">frente</string>
+    <string name="descobrir_aparelhos">Descobrir Novos Aparelhos</string>
 </resources>

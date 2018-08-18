@@ -6,6 +6,9 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+/**
+ * Controller de Alto Nível - Comandos já pré-determinado
+ */
 public class ControlleRemotoActivity extends AppCompatActivity {
 
     private Button buttonCima;
