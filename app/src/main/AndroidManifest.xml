@@ -15,28 +15,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!-- the first activity that will open -->
-        <activity android:name=".SplashActivity">
+        <activity android:name=".splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivity" />
         <activity android:name=".PairedDevicesActivity" />
-
         <activity
-            android:name=".ControlleRemotoActivity"
+            android:name=".controles.ControlleRemotoActivity"
             android:configChanges="orientation"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".ProcurarDispositivosActivity"
             android:label="@string/descobrir_aparelhos"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
-
+        <activity
+            android:name=".controles.ControlePersonalizadoActivity"
+            android:label="@string/title_activity_controle_personalizado"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

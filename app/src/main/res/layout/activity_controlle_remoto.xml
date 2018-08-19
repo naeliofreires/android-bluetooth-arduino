@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.br.ufc.bluetooth_android_arduino.ControlleRemotoActivity">
+    tools:context="com.br.ufc.bluetooth_android_arduino.controles.ControlleRemotoActivity">
 
     <Button
         android:id="@+id/buttonCima"

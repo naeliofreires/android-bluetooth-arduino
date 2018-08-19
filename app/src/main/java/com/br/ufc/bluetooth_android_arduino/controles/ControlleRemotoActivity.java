@@ -1,8 +1,11 @@
-package com.br.ufc.bluetooth_android_arduino;
+package com.br.ufc.bluetooth_android_arduino.controles;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+
+import com.br.ufc.bluetooth_android_arduino.ConnectionThread;
+import com.br.ufc.bluetooth_android_arduino.R;
 
 import java.util.ArrayList;
 

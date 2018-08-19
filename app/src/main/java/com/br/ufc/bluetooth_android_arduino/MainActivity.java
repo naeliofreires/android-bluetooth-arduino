@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.br.ufc.bluetooth_android_arduino.controles.ControlleRemotoActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     /***********************************************/
