@@ -12,4 +12,8 @@
     <string name="back">voltar</string>
     <string name="front">frente</string>
     <string name="descobrir_aparelhos">Descobrir Novos Aparelhos</string>
+    <string name="dispositivos_pareados">Dispositivos Pareados</string>
+    <string name="buscar_dispositivos">Buscar Dispositivos</string>
+    <string name="habilitar_visibilidade">Habilitar Visibilidade</string>
+    <string name="conectar">Conectar</string>
 </resources>

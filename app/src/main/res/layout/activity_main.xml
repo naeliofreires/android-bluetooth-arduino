@@ -1,60 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.br.ufc.bluetooth_android_arduino.MainActivity">
 
-    <Button
-        android:id="@+id/buttonDispositivosPareados"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/buttonProcurarDispositivos"
-        android:layout_alignLeft="@+id/buttonProcurarDispositivos"
-        android:layout_alignRight="@+id/buttonProcurarDispositivos"
-        android:layout_alignStart="@+id/buttonProcurarDispositivos"
-        android:layout_below="@+id/buttonProcurarDispositivos"
-        android:text="Dispositivos Pareados "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
-    <Button
-        android:id="@+id/buttonProcurarDispositivos"
-        android:layout_width="178dp"
-        android:layout_height="47dp"
-        android:layout_alignEnd="@+id/buttonHabilitarVisibilidade"
-        android:layout_alignLeft="@+id/buttonHabilitarVisibilidade"
-        android:layout_alignRight="@+id/buttonHabilitarVisibilidade"
-        android:layout_alignStart="@+id/buttonHabilitarVisibilidade"
-        android:layout_below="@+id/buttonHabilitarVisibilidade"
-        android:text="Buscar Dispositivos"
-        app:layout_constraintBottom_toTopOf="@+id/buttonDispositivosPareados"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/buttonOpenDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/conectar" />
 
-    <Button
-        android:id="@+id/buttonHabilitarVisibilidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
-        android:text="Habilitar Visibilidade"
-        app:layout_constraintBottom_toTopOf="@+id/buttonProcurarDispositivos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/buttonHabilitarVisibilidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/habilitar_visibilidade" />
 
-    <Button
-        android:id="@+id/buttonOpenDialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/buttonDispositivosPareados"
-        android:layout_alignLeft="@+id/buttonDispositivosPareados"
-        android:layout_alignRight="@+id/buttonDispositivosPareados"
-        android:layout_alignStart="@+id/buttonDispositivosPareados"
-        android:layout_below="@+id/buttonDispositivosPareados"
-        android:layout_marginTop="22dp"
-        android:text="Conectar" />
+        <Button
+            android:id="@+id/buttonProcurarDispositivos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/buscar_dispositivos" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/buttonDispositivosPareados"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/dispositivos_pareados" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
