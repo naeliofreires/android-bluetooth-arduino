@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
@@ -26,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Buttons
      */
-    private Button buttonOpenDialog;
-    private Button buttonAparelhosPareados;
+    private Button btnConectar;
     private Button buttonProcurarDispositivos;
     private Button buttonHabilitarVisibilidade;
 
@@ -68,14 +68,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /**
-         * Alert Dialog
-         */
+        this.configuracaoBluetooth();
+
+        this.btnConectar = findViewById(R.id.btnConectar);
         this.lista_dispositivos = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        this.buttonOpenDialog = findViewById(R.id.buttonOpenDialog);
+        this.btnConectar.setOnClickListener(view -> configurationDialog());
 
-        this.buttonOpenDialog.setOnClickListener(view -> configurationDialog());
+        this.procurarDispositivos();
+        this.habilitarVisibilidade();
+    }
 
+    void configuracaoBluetooth() {
         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 
         //  Verificando se o Bluetooth existe e esta funcionando no aparelho
@@ -93,34 +96,18 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "Bluetooth esta ativado!", Toast.LENGTH_SHORT).show();
         }
+    }
 
-        /**
-         * Action of List Paired Devices
-         */
-        this.buttonAparelhosPareados = findViewById(R.id.buttonDispositivosPareados);
-
-        this.buttonAparelhosPareados.setOnClickListener((v) -> {
-            openPairedDevices();
-        });
-
-
-        /**
-         * Action of Searcher News Devices
-         */
+    void procurarDispositivos() {
         this.buttonProcurarDispositivos = findViewById(R.id.buttonProcurarDispositivos);
+        this.buttonProcurarDispositivos.setVisibility(View.INVISIBLE);
+        this.buttonProcurarDispositivos.setOnClickListener((v) -> discoverDevices());
+    }
 
-        this.buttonProcurarDispositivos.setOnClickListener((v) -> {
-            discoverDevices();
-        });
-
-        /**
-         * Enable Visibility Of Bluetooth
-         */
+    void habilitarVisibilidade() {
         this.buttonHabilitarVisibilidade = findViewById(R.id.buttonHabilitarVisibilidade);
-
-        this.buttonHabilitarVisibilidade.setOnClickListener((v) -> {
-            enableVisibility();
-        });
+        this.buttonHabilitarVisibilidade.setVisibility(View.INVISIBLE);
+        this.buttonHabilitarVisibilidade.setOnClickListener((v) -> enableVisibility());
     }
 
     void configurationDialog() {
@@ -193,12 +180,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // visualizando dispositivos pareados
-    private void openPairedDevices() {
-        Intent searchPairedDevicesIntent = new Intent(MainActivity.this, PairedDevicesActivity.class);
-        startActivityForResult(searchPairedDevicesIntent, SELECT_PAIRED_DEVICE);
-    }
-
     // procurando dispositivos
     private void discoverDevices() {
         Intent searchPairedDevicesIntent = new Intent(this, ProcurarDispositivosActivity.class);
@@ -211,22 +192,5 @@ public class MainActivity extends AppCompatActivity {
         discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 30);
         startActivity(discoverableIntent);
     }
-
-//    Handler
-//    public static Handler handler = new Handler() {
-//        @Override
-//        public void handleMessage(Message msg) {
-//
-//            Bundle bundle = msg.getData();
-//            byte[] data = bundle.getByteArray("data");
-//            String dataString= new String(data);
-//
-//            if(dataString.equals("---N"))
-//                statusMessage.setText("Ocorreu um erro durante a conexão D:");
-//            else if(dataString.equals("---S"))
-//                statusMessage.setText("Conectado :D");
-//
-//        }
-//    };
 
 }
