@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="369dp"
         android:layout_marginTop="100dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
@@ -17,11 +17,18 @@
         tools:layout_editor_absoluteX="0dp">
 
         <Button
-            android:id="@+id/btnConectar"
+            android:id="@+id/btnControleRemoto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="87dp"
             android:layout_marginTop="15dp"
-            android:text="@string/conectar" />
+            android:text="@string/controle_remoto" />
+
+        <Button
+            android:id="@+id/btnControlePersonalizado"
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/controle_personalizado" />
 
         <Button
             android:id="@+id/buttonHabilitarVisibilidade"

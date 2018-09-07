@@ -2,31 +2,35 @@ package com.br.ufc.bluetooth_android_arduino.controles;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 
 import com.br.ufc.bluetooth_android_arduino.ConnectionThread;
 import com.br.ufc.bluetooth_android_arduino.R;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Controller de Alto Nível - Comandos já pré-determinado
  */
 public class ControlleRemotoActivity extends AppCompatActivity {
 
-    private Button buttonCima;
-    private Button buttonTras;
+    private Button btnCima;
+    private Button btnTras;
 
-    private Button buttonDireita;
-    private Button buttonEsquerda;
+    private Button btnDireita;
+    private Button btnEsquerda;
 
-    private Button buttonUp;
-    private Button buttonDown;
+    private Button btnUp;
+    private Button btnDown;
 
-    private Button buttonAcenar;
-    private Button buttonDesligar;
-    private Button buttonExecutar;
+    private Button btnAcenar;
+    private Button btnDesligar;
+    private Button btnExecutar;
 
+    private Timer timer;
     private ConnectionThread connect;
     private ArrayList<String> comandos;
 
@@ -35,49 +39,58 @@ public class ControlleRemotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controlle_remoto);
 
-        this.buttonExecutar = findViewById(R.id.buttonExecutar);
+        timer = new Timer();
+        this.btnExecutar = findViewById(R.id.buttonExecutar);
 
-        this.buttonCima = findViewById(R.id.buttonCima);
-        this.buttonTras = findViewById(R.id.buttonTras);
-        this.buttonDireita = findViewById(R.id.buttonDireita);
-        this.buttonEsquerda = findViewById(R.id.buttonEsquerda);
+        this.btnCima = findViewById(R.id.buttonCima);
+        this.btnTras = findViewById(R.id.buttonTras);
+        this.btnDireita = findViewById(R.id.buttonDireita);
+        this.btnEsquerda = findViewById(R.id.buttonEsquerda);
 
-        this.buttonUp = findViewById(R.id.buttonUp);
-        this.buttonDown = findViewById(R.id.buttonDown);
+        this.btnUp = findViewById(R.id.buttonUp);
+        this.btnDown = findViewById(R.id.buttonDown);
 
-        this.buttonAcenar = findViewById(R.id.buttonTchau);
-        this.buttonDesligar = findViewById(R.id.buttonDesligar);
+        this.btnAcenar = findViewById(R.id.buttonTchau);
+        this.btnDesligar = findViewById(R.id.buttonDesligar);
 
         this.comandos = new ArrayList<>();
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            String nome = bundle.getString("devAddress");
-            connect = new ConnectionThread(nome);
+            String endereco = bundle.getString("devAddress");
+            //TERMINATED
+            connect = new ConnectionThread(endereco);
             connect.start();
         }
 
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                boolean b = connect.isAlive();
+                Log.d("situação bluetooth", String.valueOf(b));
+            }
+        }, 1000, 1000);
+
         // foward_();
-        this.buttonCima.setOnClickListener((v) -> this.comandos.add("w"));
+        this.btnCima.setOnClickListener((v) -> this.comandos.add("w"));
         // back_();
-        this.buttonTras.setOnClickListener((v) -> this.comandos.add("s"));
+        this.btnTras.setOnClickListener((v) -> this.comandos.add("s"));
         // turn_right_();
-        this.buttonDireita.setOnClickListener((v) -> this.comandos.add("d"));
+        this.btnDireita.setOnClickListener((v) -> this.comandos.add("d"));
         // turn_left_();
-        this.buttonEsquerda.setOnClickListener((v) -> this.comandos.add("a"));
+        this.btnEsquerda.setOnClickListener((v) -> this.comandos.add("a"));
 
         //stand_();
-        this.buttonUp.setOnClickListener((v) -> this.comandos.add("e"));
+        this.btnUp.setOnClickListener((v) -> this.comandos.add("e"));
         // sit_();
-        this.buttonDown.setOnClickListener((v) -> this.comandos.add("q"));
+        this.btnDown.setOnClickListener((v) -> this.comandos.add("q"));
         // wave_();
-        this.buttonAcenar.setOnClickListener((v) -> this.comandos.add("b"));
+        this.btnAcenar.setOnClickListener((v) -> this.comandos.add("b"));
         // shutdown();
-        this.buttonDesligar.setOnClickListener((v) -> this.comandos.add("x"));
+        this.btnDesligar.setOnClickListener((v) -> this.comandos.add("x"));
 
-        this.buttonExecutar.setOnClickListener((v) -> {
+        this.btnExecutar.setOnClickListener((v) -> {
             sendMessage();
-            this.comandos = new ArrayList<>();
+            this.limpar_comandos();
         });
     }
 
@@ -86,5 +99,9 @@ public class ControlleRemotoActivity extends AppCompatActivity {
             byte[] data = srt.getBytes();
             this.connect.write(data);
         }
+    }
+
+    public void limpar_comandos() {
+        this.comandos = new ArrayList<>();
     }
 }

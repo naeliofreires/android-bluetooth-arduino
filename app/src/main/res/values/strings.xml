@@ -16,5 +16,7 @@
     <string name="buscar_dispositivos">Buscar Dispositivos</string>
     <string name="habilitar_visibilidade">Habilitar Visibilidade</string>
     <string name="conectar">Conectar</string>
-    <string name="title_activity_controle_personalizado">ControlePersonalizadoActivity</string>
+    <string name="controle_remoto">Controle Remoto</string>
+    <string name="title_activity_controle_personalizado">Controle Personalizado</string>
+    <string name="controle_personalizado">Controle Personalizado</string>
 </resources>
