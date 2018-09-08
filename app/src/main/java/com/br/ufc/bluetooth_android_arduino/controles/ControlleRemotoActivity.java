@@ -30,7 +30,6 @@ public class ControlleRemotoActivity extends AppCompatActivity {
     private Button btnDesligar;
     private Button btnExecutar;
 
-    private Timer timer;
     private ConnectionThread connect;
     private ArrayList<String> comandos;
 
@@ -39,7 +38,6 @@ public class ControlleRemotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controlle_remoto);
 
-        timer = new Timer();
         this.btnExecutar = findViewById(R.id.buttonExecutar);
 
         this.btnCima = findViewById(R.id.buttonCima);
@@ -58,17 +56,9 @@ public class ControlleRemotoActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             String endereco = bundle.getString("devAddress");
-            //TERMINATED
             connect = new ConnectionThread(endereco);
             connect.start();
         }
-
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                boolean b = connect.isAlive();
-                Log.d("situação bluetooth", String.valueOf(b));
-            }
-        }, 1000, 1000);
 
         // foward_();
         this.btnCima.setOnClickListener((v) -> this.comandos.add("w"));

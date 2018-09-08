@@ -1,0 +1,14 @@
+
+ˆsquid:S1450"gRemove the "btnControlePersonalizado" field and declare it as a local variable in the relevant methods.(á‰¦Ãşÿÿÿÿ8–¿ê­Û,
+?squid:S1148"#Use a logger to log this exception.(Ç’Çê8–¿ê­Û,
+ƒsquid:S1450"gRemove the "btnHabilitarVisibilidade" field and declare it as a local variable in the relevant methods.(ùçÜœ8–¿ê­Û,
+wsquid:S1450"VRemove the "connect" field and declare it as a local variable in the relevant methods.(õŸğşÿÿÿÿ8–¿ê­Û,
+csquid:S3027"GPut single-quotes around '\n' to use the faster "indexOf(char)" method.(¥úÉ”8–¿ê­Û,
+Msquid:S1602",Remove useless curly braces around statement(ïÀÕ·ÿÿÿÿÿ8–¿ê­Û,
+Msquid:S1602",Remove useless curly braces around statement(ïÀÕ·ÿÿÿÿÿ8–¿ê­Û,
+hsquid:S3027"GPut single-quotes around '\n' to use the faster "indexOf(char)" method.(¸Í³Äûÿÿÿÿ8–¿ê­Û,
+|squid:S1450"`Remove the "btnControleRemoto" field and declare it as a local variable in the relevant methods.(Ï°Ë¢8–¿ê­Û,
+‡squid:S1450"fRemove the "btnProcurarDispositivos" field and declare it as a local variable in the relevant methods.(µóóûÿÿÿÿ8–¿ê­Û,
+jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(²Ú±8–¿ê­Û,
+hsquid:S3027"GPut single-quotes around '\n' to use the faster "indexOf(char)" method.(¸Í³Äûÿÿÿÿ8–¿ê­Û,
+csquid:S3027"GPut single-quotes around '\n' to use the faster "indexOf(char)" method.(¥úÉ”8–¿ê­Û,

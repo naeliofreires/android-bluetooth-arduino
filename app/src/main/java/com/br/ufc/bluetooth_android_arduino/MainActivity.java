@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.br.ufc.bluetooth_android_arduino.controles.ControlePersonalizadoActivity;
 import com.br.ufc.bluetooth_android_arduino.controles.ControlleRemotoActivity;
 
 import static com.br.ufc.bluetooth_android_arduino.constants.Constants.ENABLE_BLUETOOTH;
@@ -23,20 +24,20 @@ import static com.br.ufc.bluetooth_android_arduino.constants.Constants.SELECT_PA
 public class MainActivity extends AppCompatActivity {
 
     private Button btnControleRemoto;
+    private Button btnControlePersonalizado;
     private Button btnProcurarDispositivos;
     private Button btnHabilitarVisibilidade;
 
-    // connection thread
+    /* connection thread */
     private ConnectionThread connect;
 
-    // alert dialog
-    private ArrayAdapter<String> lista_dispositivos;
+    /* alert dialog */
+    private ArrayAdapter<String> dispositivosAdapter;
 
-    // define um receptor para o evento de descoberta de dispositivo
+    /*  define um receptor para o evento de descoberta de dispositivo */
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
 
-        /*  Este método é executado sempre que um novo dispositivo for descoberto.
-         */
+        /*  Este método é executado sempre que um novo dispositivo for descoberto. */
         public void onReceive(Context context, Intent intent) {
 
             /**
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                lista_dispositivos.add(device.getName() + "\n" + device.getAddress());
+                dispositivosAdapter.add(device.getName() + "\n" + device.getAddress());
             }
         }
     };
@@ -62,8 +63,12 @@ public class MainActivity extends AppCompatActivity {
         this.configuracaoBluetooth();
 
         this.btnControleRemoto = findViewById(R.id.btnControleRemoto);
-        this.lista_dispositivos = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        this.btnControleRemoto.setOnClickListener(view -> configurationDialog());
+        this.btnControlePersonalizado = findViewById(R.id.btnControlePersonalizado);
+
+        this.dispositivosAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+
+        this.btnControleRemoto.setOnClickListener(view -> configurationDialogControleRemoto());
+        this.btnControlePersonalizado.setOnClickListener(v -> configurationDialogControlePersonalizado());
 
         this.procurarDispositivos();
         this.habilitarVisibilidade();
@@ -72,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
     void configuracaoBluetooth() {
         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        //  Verificando se o Bluetooth existe e esta funcionando no aparelho
         if (btAdapter == null) {
             Toast.makeText(getApplicationContext(), "O bluetooth não esta funcioando!", Toast.LENGTH_SHORT).show();
         } else {
@@ -80,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //  ativando o  bluetooth com a permissão do usuário
+        assert btAdapter != null;
         if (!btAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, ENABLE_BLUETOOTH);
@@ -91,32 +96,33 @@ public class MainActivity extends AppCompatActivity {
 
     void procurarDispositivos() {
         this.btnProcurarDispositivos = findViewById(R.id.buttonProcurarDispositivos);
-        this.btnProcurarDispositivos.setVisibility(View.INVISIBLE);
-        this.btnProcurarDispositivos.setOnClickListener((v) -> discoverDevices());
+        this.btnProcurarDispositivos.setVisibility(View.INVISIBLE); // escondendo botão 'procurar dispositivos'
+        this.btnProcurarDispositivos.setOnClickListener(v -> discoverDevices());
     }
 
     void habilitarVisibilidade() {
         this.btnHabilitarVisibilidade = findViewById(R.id.buttonHabilitarVisibilidade);
         this.btnHabilitarVisibilidade.setVisibility(View.INVISIBLE);
-        this.btnHabilitarVisibilidade.setOnClickListener((v) -> enableVisibility());
+        this.btnHabilitarVisibilidade.setOnClickListener(v -> enableVisibility());
     }
 
-    void configurationDialog() {
+    private void configurationDialogControleRemoto() {
 
         dialogForConnectionBluetooth = new AlertDialog.Builder(MainActivity.this);
         dialogForConnectionBluetooth.setTitle("Conecte-se ao bluetooth...");
         dialogForConnectionBluetooth.setCancelable(false);
         dialogForConnectionBluetooth.setIcon(R.drawable.ic_launcher_background);
 
-        // descobrindo os dispositivos
+        /* descobrindo os dispositivos */
         BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
         btAdapter.startDiscovery();
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(receiver, filter);
 
-        dialogForConnectionBluetooth.setAdapter(lista_dispositivos, (dialog, which) -> {
+        dialogForConnectionBluetooth.setAdapter(dispositivosAdapter, (dialog, which) -> {
 
-            String item = lista_dispositivos.getItem(which);
+            String item = dispositivosAdapter.getItem(which);
+            assert item != null;
             String devName = item.substring(0, item.indexOf("\n"));
             String devAddress = item.substring(item.indexOf("\n") + 1, item.length());
 
@@ -134,9 +140,50 @@ public class MainActivity extends AppCompatActivity {
             builderInner.show();
         });
 
-        dialogForConnectionBluetooth.setNeutralButton
-                ("Cancelar", (dialog, which) ->
-                        Toast.makeText(getApplicationContext(), "É necessário realizar uma conexão...", Toast.LENGTH_SHORT).show());
+        dialogForConnectionBluetooth.setNeutralButton("Cancelar", (dialog, which) -> {
+            Toast.makeText(getApplicationContext(), "É necessário realizar uma conexão...", Toast.LENGTH_SHORT).show();
+        });
+
+        dialogForConnectionBluetooth.create();
+        dialogForConnectionBluetooth.show();
+    }
+
+    private void configurationDialogControlePersonalizado() {
+        dialogForConnectionBluetooth = new AlertDialog.Builder(MainActivity.this);
+        dialogForConnectionBluetooth.setTitle("Conecte-se ao bluetooth...");
+        dialogForConnectionBluetooth.setCancelable(false);
+        dialogForConnectionBluetooth.setIcon(R.drawable.ic_launcher_background);
+
+        /* descobrindo os dispositivos */
+        BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+        btAdapter.startDiscovery();
+        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        registerReceiver(receiver, filter);
+
+        dialogForConnectionBluetooth.setAdapter(dispositivosAdapter, (dialog, which) -> {
+
+            String item = dispositivosAdapter.getItem(which);
+            assert item != null;
+            String devName = item.substring(0, item.indexOf("\n"));
+            String devAddress = item.substring(item.indexOf("\n") + 1, item.length());
+
+            AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
+
+            builderInner.setTitle("Você selecionou este dispositivo...");
+            builderInner.setMessage("Nome: " + devName + "\nEndereço:" + devAddress);
+
+            builderInner.setPositiveButton("Conectar", (dialog1, which1) -> {
+                Intent intentControleRemoto = new Intent(MainActivity.this, ControlePersonalizadoActivity.class);
+                intentControleRemoto.putExtra("devAddress", devAddress);
+                startActivity(intentControleRemoto);
+            });
+
+            builderInner.show();
+        });
+
+        dialogForConnectionBluetooth.setNeutralButton("Cancelar", (dialog, which) -> {
+            Toast.makeText(getApplicationContext(), "É necessário realizar uma conexão...", Toast.LENGTH_SHORT).show();
+        });
 
         dialogForConnectionBluetooth.create();
         dialogForConnectionBluetooth.show();
@@ -150,9 +197,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == ENABLE_BLUETOOTH) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(getApplicationContext(), "Bluetooth ativado!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Bluetooth Ativado!", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "Bluetooth não ativado!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Bluetooth Não Ativado!", Toast.LENGTH_SHORT).show();
             }
         } else if (requestCode == SELECT_PAIRED_DEVICE || requestCode == SELECT_DISCOVERED_DEVICE) {
             if (resultCode == RESULT_OK) {

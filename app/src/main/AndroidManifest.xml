@@ -25,19 +25,23 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+
         <activity
             android:name=".controles.ControlleRemotoActivity"
             android:configChanges="orientation"
             android:screenOrientation="landscape" />
+
         <activity
             android:name=".ProcurarDispositivosActivity"
             android:label="@string/descobrir_aparelhos"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
+
         <activity
             android:name=".controles.ControlePersonalizadoActivity"
             android:label="@string/title_activity_controle_personalizado"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
