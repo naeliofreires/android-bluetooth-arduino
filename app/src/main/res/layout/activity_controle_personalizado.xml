@@ -7,124 +7,139 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnServe1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="35dp"
-        android:text="1 Serv"
-        android:layout_marginLeft="20dp"
-        android:layout_alignParentLeft="true" />
+        android:text="1 Serv" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnServe2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnServe1"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/button"
+        android:layout_alignStart="@+id/btnServe1"
         android:layout_marginTop="108dp"
-        android:text="2 Serv"
-        android:layout_alignLeft="@+id/button" />
+        android:text="2 Serv" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnServe3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button4"
-        android:layout_alignTop="@+id/button"
-        android:text="3 Serv"
-        android:layout_alignLeft="@+id/button4" />
+        android:layout_alignLeft="@+id/btnServe4"
+        android:layout_alignStart="@+id/btnServe4"
+        android:layout_alignTop="@+id/btnServe1"
+        android:text="3 Serv" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnServe4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/button2"
-        android:layout_marginStart="145dp"
-        android:text="4 Serv"
+        android:layout_alignTop="@+id/btnServe2"
         android:layout_marginLeft="145dp"
-        android:layout_alignParentLeft="true" />
+        android:layout_marginStart="145dp"
+        android:text="4 Serv" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnServe7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button6"
-        android:layout_alignTop="@+id/button8"
-        android:text="7 Serv"
-        android:layout_alignLeft="@+id/button6" />
+        android:layout_alignLeft="@+id/btnServe8"
+        android:layout_alignStart="@+id/btnServe8"
+        android:layout_alignTop="@+id/btnServe1"
+        android:text="7 Serv" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btnServe8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/button2"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/btnServe2"
         android:layout_marginEnd="17dp"
-        android:text="Button"
         android:layout_marginRight="17dp"
-        android:layout_alignParentRight="true" />
+        android:text="8 Serv" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/btnServe6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/button2"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/btnServe2"
         android:layout_marginEnd="130dp"
-        android:text="6 Serv"
         android:layout_marginRight="130dp"
-        android:layout_alignParentRight="true" />
+        android:text="6 Serv" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/btnServe5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button7"
-        android:layout_alignTop="@+id/button"
-        android:text="5 Serv"
-        android:layout_alignLeft="@+id/button7" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="69dp"
-        android:layout_height="34dp"
-        android:layout_above="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-108dp"
-        android:text="RESET" />
+        android:layout_alignLeft="@+id/btnServe6"
+        android:layout_alignStart="@+id/btnServe6"
+        android:layout_alignTop="@+id/btnServe1"
+        android:text="5 Serv" />
 
     <EditText
-        android:id="@+id/editText4"
-        android:layout_width="458dp"
+        android:id="@+id/edTxtComandos"
+        android:layout_width="401dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/comandos_selecionados"
-        android:inputType="textPersonName"
-        android:layout_alignParentLeft="true" />
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/button10"
-        android:layout_width="52dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/editText4"
-        android:layout_toEndOf="@+id/editText4"
-        android:text="Button"
-        android:layout_toRightOf="@+id/editText4" />
+        android:layout_alignBottom="@+id/edTxtComandos"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
+        android:text="Button" />
 
     <Button
-        android:id="@+id/button11"
-        android:layout_width="52dp"
+        android:id="@+id/buttonAdd"
+        android:layout_width="66dp"
+        android:layout_height="32dp"
+        android:layout_alignEnd="@+id/button10"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="112dp"
+        android:text="+"
+        android:layout_alignRight="@+id/button10" />
+
+    <SeekBar
+        android:id="@+id/seekBarGraus"
+        android:layout_width="456dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/button5"
-        android:layout_alignTop="@+id/editText4"
-        android:text="Button"
-        android:layout_alignRight="@+id/button5" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/btnServe1"
+        android:layout_marginBottom="119dp"
+        android:layout_alignLeft="@+id/btnServe1" />
+
+    <TextView
+        android:id="@+id/txtViewGrauMovimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
 
 </RelativeLayout>
