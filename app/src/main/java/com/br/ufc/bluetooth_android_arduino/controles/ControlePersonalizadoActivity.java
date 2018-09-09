@@ -45,6 +45,13 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
             actionButtonAdd();
 
             action_serv1();
+            action_serv2();
+            action_serv3();
+            action_serv4();
+            action_serv5();
+            action_serv6();
+            action_serv7();
+            action_serv8();
         } else
             Toast.makeText(this, "Conexão Falhou", Toast.LENGTH_LONG).show();
     }
@@ -65,8 +72,8 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
         sequencia_comandos = Constants.VAZIA;
         seekBar = findViewById(R.id.seekBarGraus);
         edTxtComandos = findViewById(R.id.edTxtComandos);
+        edTxtComandos.setEnabled(false);
         txtViewGrauMovimento = findViewById(R.id.txtViewGrauMovimento);
-
         buttonAdd = findViewById(R.id.buttonAdd);
 
         btnServo1 = findViewById(R.id.btnServe1);
@@ -118,6 +125,90 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
                 sequencia_comandos += "1:";
             else
                 sequencia_comandos += "&1:";
+
+            atualizar_edTxtComandos();
+        });
+    }
+
+    private void action_serv2() {
+        btnServo2.setOnClickListener(v -> {
+
+            if (sequencia_comandos.isEmpty())
+                sequencia_comandos += "2:";
+            else
+                sequencia_comandos += "&2:";
+
+            atualizar_edTxtComandos();
+        });
+    }
+
+    private void action_serv3() {
+        btnServo3.setOnClickListener(v -> {
+
+            if (sequencia_comandos.isEmpty())
+                sequencia_comandos += "3:";
+            else
+                sequencia_comandos += "&3:";
+
+            atualizar_edTxtComandos();
+        });
+    }
+
+    private void action_serv4() {
+        btnServo4.setOnClickListener(v -> {
+
+            if (sequencia_comandos.isEmpty())
+                sequencia_comandos += "4:";
+            else
+                sequencia_comandos += "&4:";
+
+            atualizar_edTxtComandos();
+        });
+    }
+
+    private void action_serv5() {
+        btnServo5.setOnClickListener(v -> {
+
+            if (sequencia_comandos.isEmpty())
+                sequencia_comandos += "5:";
+            else
+                sequencia_comandos += "&5:";
+
+            atualizar_edTxtComandos();
+        });
+    }
+
+    private void action_serv6() {
+        btnServo6.setOnClickListener(v -> {
+
+            if (sequencia_comandos.isEmpty())
+                sequencia_comandos += "6:";
+            else
+                sequencia_comandos += "&7:";
+
+            atualizar_edTxtComandos();
+        });
+    }
+
+    private void action_serv7() {
+        btnServo7.setOnClickListener(v -> {
+
+            if (sequencia_comandos.isEmpty())
+                sequencia_comandos += "7:";
+            else
+                sequencia_comandos += "&7:";
+
+            atualizar_edTxtComandos();
+        });
+    }
+
+    private void action_serv8() {
+        btnServo8.setOnClickListener(v -> {
+
+            if (sequencia_comandos.isEmpty())
+                sequencia_comandos += "8:";
+            else
+                sequencia_comandos += "&8:";
 
             atualizar_edTxtComandos();
         });
