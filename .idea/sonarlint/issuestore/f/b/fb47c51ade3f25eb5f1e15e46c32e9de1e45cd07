@@ -1,41 +1,11 @@
 
-osquid:S1450"TRemove the "btn90" field and declare it as a local variable in the relevant methods.(éú¢}8èÃ“ÍÛ,
-ysquid:S1450"XRemove the "btnServo4" field and declare it as a local variable in the relevant methods.(ÌÛ—Ìÿÿÿÿÿ8ùÏúÌÛ,
-Nsquid:S1068"-Remove this unused "btnServo5" private field.(ñ’òØÿÿÿÿÿ8ùÏúÌÛ,
-psquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ü†Âùÿÿÿÿ8áóšÍÛ,
-Hsquid:S1659"'Declare "btnServo6" on a separate line.(ñ’òØÿÿÿÿÿ8ùÏúÌÛ,
-Nsquid:S1068"-Remove this unused "btnServo7" private field.(Î›ö©ûÿÿÿÿ8ùÏúÌÛ,
->squid:S1659"#Declare "btn90" on a separate line.(éú¢}8ŠûıÌÛ,
-ysquid:S1450"XRemove the "btnServo8" field and declare it as a local variable in the relevant methods.(Î›ö©ûÿÿÿÿ8ùÏúÌÛ,
-Hsquid:S1659"'Declare "btnServo3" on a separate line.(ÌÛ—Ìÿÿÿÿÿ8ùÏúÌÛ,
-Nsquid:S1068"-Remove this unused "btnServo4" private field.(ÌÛ—Ìÿÿÿÿÿ8ùÏúÌÛ,
->squid:S1659"#Declare "btn30" on a separate line.(éú¢}8ŠûıÌÛ,
-Hsquid:S1659"'Declare "btnServo8" on a separate line.(Î›ö©ûÿÿÿÿ8ùÏúÌÛ,
-psquid:S1450"URemove the "btn110" field and declare it as a local variable in the relevant methods.(éú¢}8éÑ”ÍÛ,
-squid:S00116"]Rename this field "sequencia_comandos" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£ÆÒ¸øÿÿÿÿ8ùÏúÌÛ,
-Hsquid:S1659"'Declare "btnServo4" on a separate line.(ÌÛ—Ìÿÿÿÿÿ8ùÏúÌÛ,
-Hsquid:S1659"'Declare "btnServo7" on a separate line.(Î›ö©ûÿÿÿÿ8ùÏúÌÛ,
-Nsquid:S1068"-Remove this unused "btnServo8" private field.(Î›ö©ûÿÿÿÿ8ùÏúÌÛ,
-ssquid:S1450"XRemove the "btnServo2" field and declare it as a local variable in the relevant methods.(æöçZ8ùÏúÌÛ,
-wsquid:S1450"VRemove the "connect" field and declare it as a local variable in the relevant methods.(õŸğşÿÿÿÿ8ùÏúÌÛ,
-psquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼æ¯ÿÿÿÿÿ8ùÏúÌÛ,
-?squid:S1659"$Declare "btn110" on a separate line.(éú¢}8ŠûıÌÛ,
-Hsquid:S1068"-Remove this unused "btnServo2" private field.(æöçZ8ùÏúÌÛ,
-ysquid:S1450"XRemove the "btnServo5" field and declare it as a local variable in the relevant methods.(ñ’òØÿÿÿÿÿ8ùÏúÌÛ,
->squid:S1659"#Declare "btn50" on a separate line.(éú¢}8ŠûıÌÛ,
-ysquid:S1450"XRemove the "btnServo6" field and declare it as a local variable in the relevant methods.(ñ’òØÿÿÿÿÿ8ùÏúÌÛ,
-Hsquid:S1659"'Declare "btnServo5" on a separate line.(ñ’òØÿÿÿÿÿ8ùÏúÌÛ,
-psquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³ËÖãøÿÿÿÿ8ùÏúÌÛ,
-ysquid:S1450"XRemove the "btnServo7" field and declare it as a local variable in the relevant methods.(Î›ö©ûÿÿÿÿ8ùÏúÌÛ,
-Bsquid:S1659"'Declare "btnServo2" on a separate line.(æöçZ8ùÏúÌÛ,
-Nsquid:S1068"-Remove this unused "btnServo3" private field.(ÌÛ—Ìÿÿÿÿÿ8ùÏúÌÛ,
-osquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ä¾ıÁøÿÿÿÿ8ùÏúÌÛ,
-Nsquid:S1068"-Remove this unused "btnServo6" private field.(ñ’òØÿÿÿÿÿ8ùÏúÌÛ,
-ksquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡ã†8ùÏúÌÛ,
-osquid:S1450"TRemove the "btn30" field and declare it as a local variable in the relevant methods.(éú¢}8‚’ÍÛ,
-ysquid:S1450"XRemove the "btnServo3" field and declare it as a local variable in the relevant methods.(ÌÛ—Ìÿÿÿÿÿ8ùÏúÌÛ,
-osquid:S1450"TRemove the "btn50" field and declare it as a local variable in the relevant methods.(éú¢}8‚’ÍÛ,
-Dsquid:S1068")Remove this unused "btn30" private field.(éú¢}8–ş¡ÍÛ,
-Dsquid:S1068")Remove this unused "btn50" private field.(éú¢}8–ş¡ÍÛ,
-Dsquid:S1068")Remove this unused "btn90" private field.(éú¢}8–ş¡ÍÛ,
-Esquid:S1068"*Remove this unused "btn110" private field.(éú¢}8–ş¡ÍÛ,
+Dsquid:S1659"'Declare "btnServo2" on a separate line.(æöçZ8Èª„ôÜ,
+nsquid:CommentedOutCodeLinet"<This block of commented-out lines of code should be removed.(¡¡Ëùÿÿÿÿ8Èª„ôÜ,
+Lsquid:S1659")Declare "btnExecutar" on a separate line.(Êğ§öøÿÿÿÿ8Èª„ôÜ,
+Jsquid:S1659"'Declare "btnServo4" on a separate line.(ÌÛ—Ìÿÿÿÿÿ8Èª„ôÜ,
+qsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ä¾ıÁøÿÿÿÿ8Èª„ôÜ,
+Jsquid:S1659 "'Declare "btnServo7" on a separate line.(Î›ö©ûÿÿÿÿ8Èª„ôÜ,
+Jsquid:S1659"'Declare "btnServo6" on a separate line.(ñ’òØÿÿÿÿÿ8Èª„ôÜ,
+Jsquid:S1659"'Declare "btnServo5" on a separate line.(ñ’òØÿÿÿÿÿ8Èª„ôÜ,
+Jsquid:S1659"'Declare "btnServo3" on a separate line.(ÌÛ—Ìÿÿÿÿÿ8Èª„ôÜ,
+Jsquid:S1659 "'Declare "btnServo8" on a separate line.(Î›ö©ûÿÿÿÿ8Èª„ôÜ,

@@ -2,15 +2,12 @@ package com.br.ufc.bluetooth_android_arduino.controles;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 
 import com.br.ufc.bluetooth_android_arduino.ConnectionThread;
 import com.br.ufc.bluetooth_android_arduino.R;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Controller de Alto Nível - Comandos já pré-determinado
@@ -80,7 +77,7 @@ public class ControlleRemotoActivity extends AppCompatActivity {
 
         this.btnExecutar.setOnClickListener((v) -> {
             sendMessage();
-            this.limpar_comandos();
+            this.limparComandos();
         });
     }
 
@@ -91,7 +88,7 @@ public class ControlleRemotoActivity extends AppCompatActivity {
         }
     }
 
-    public void limpar_comandos() {
+    public void limparComandos() {
         this.comandos = new ArrayList<>();
     }
 }

@@ -106,7 +106,7 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/buttonExecutar"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/edTxtComandos"
@@ -114,32 +114,44 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="26dp"
         android:layout_marginRight="26dp"
-        android:text="Button" />
+        android:text="@string/executar" />
 
     <Button
         android:id="@+id/buttonAdd"
         android:layout_width="66dp"
         android:layout_height="32dp"
-        android:layout_alignEnd="@+id/button10"
+        android:layout_alignEnd="@+id/buttonExecutar"
         android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/buttonExecutar"
         android:layout_marginBottom="112dp"
-        android:text="+"
-        android:layout_alignRight="@+id/button10" />
+        android:text="+" />
 
     <SeekBar
         android:id="@+id/seekBarGraus"
         android:layout_width="456dp"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnServe1"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/btnServe1"
-        android:layout_marginBottom="119dp"
-        android:layout_alignLeft="@+id/btnServe1" />
+        android:layout_marginBottom="119dp" />
 
     <TextView
         android:id="@+id/txtViewGrauMovimento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
+
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="240dp"
+        android:layout_marginTop="74dp"
+        android:text="@string/resetar"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="240dp" />
 
 
 </RelativeLayout>

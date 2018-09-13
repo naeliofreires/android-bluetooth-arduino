@@ -1,31 +1,28 @@
 
-rsquid:S1450"XRemove the "btnAcenar" field and declare it as a local variable in the relevant methods.(„Õõãøÿÿÿÿ
-Isquid:S1611"/Remove the parentheses around the "v" parameter(ğ¹¯ùùÿÿÿÿ
-nsquid:S1450"YRemove the "btnDireita" field and declare it as a local variable in the relevant methods.(ùãØà
-esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¯ÜÑ˜şÿÿÿÿ
-`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(êÛŠñ
-esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(×ä¢‹ıÿÿÿÿ
-psquid:S1450"VRemove the "btnDown" field and declare it as a local variable in the relevant methods.(üÈ®Ôùÿÿÿÿ
-Csquid:S1611"/Remove the parentheses around the "v" parameter(ÄÎ×l
-Dsquid:S1611"/Remove the parentheses around the "v" parameter(¾Ã£ò
-Isquid:S1611"/Remove the parentheses around the "v" parameter(¤†©øÿÿÿÿ
-[squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8š¬ï­Û,
-Csquid:S1611"/Remove the parentheses around the "v" parameter(¹¸ñ
-psquid:S1450"VRemove the "btnCima" field and declare it as a local variable in the relevant methods.(Õë¸äúÿÿÿÿ
-esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(®µ¯¢ùÿÿÿÿ
-`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÍóÍò
-Isquid:S1611"/Remove the parentheses around the "v" parameter(˜¸Ôàúÿÿÿÿ
-Isquid:S1611"/Remove the parentheses around the "v" parameter(ÿû×±øÿÿÿÿ
-hsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(Ê„¾Ğÿÿÿÿÿ
-tsquid:S1450"ZRemove the "btnDesligar" field and declare it as a local variable in the relevant methods.(©şÕşÿÿÿÿ
-`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ç¹‡¥
-_squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(İ§ÔS
-isquid:S1450"TRemove the "btnUp" field and declare it as a local variable in the relevant methods.(÷»áš
-Dsquid:S1611"/Remove the parentheses around the "v" parameter(ñÙÒá
-Csquid:S1611"/Remove the parentheses around the "v" parameter(ğÒâB
-psquid:S1450"VRemove the "btnTras" field and declare it as a local variable in the relevant methods.(Ä“ïÓùÿÿÿÿ
-esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(µÄ«úıÿÿÿÿ
-Ysquid:UselessImportCheck"0Remove this unused import 'java.util.TimerTask'.(àÀÇÙ8š¬ï­Û,
-tsquid:S1450"ZRemove the "btnExecutar" field and declare it as a local variable in the relevant methods.(àü´ßûÿÿÿÿ
-tsquid:S1450"ZRemove the "btnEsquerda" field and declare it as a local variable in the relevant methods.(½›µØùÿÿÿÿ
-Zsquid:UselessImportCheck",Remove this unused import 'java.util.Timer'.(†£ñáÿÿÿÿÿ8½µğ­Û,
+Ksquid:S1611="/Remove the parentheses around the "v" parameter(ÿû×±øÿÿÿÿ
+gsquid:CommentedOutCodeLine@"<This block of commented-out lines of code should be removed.(¯ÜÑ˜şÿÿÿÿ
+Ksquid:S1611N"/Remove the parentheses around the "v" parameter(˜¸Ôàúÿÿÿÿ
+ksquid:S1450"TRemove the "btnUp" field and declare it as a local variable in the relevant methods.(÷»áš
+vsquid:S1450"ZRemove the "btnDesligar" field and declare it as a local variable in the relevant methods.(©şÕşÿÿÿÿ
+rsquid:S1450"VRemove the "btnDown" field and declare it as a local variable in the relevant methods.(üÈ®Ôùÿÿÿÿ
+Fsquid:S1611A"/Remove the parentheses around the "v" parameter(¾Ã£ò
+vsquid:S1450"ZRemove the "btnExecutar" field and declare it as a local variable in the relevant methods.(àü´ßûÿÿÿÿ
+vsquid:S1450"ZRemove the "btnEsquerda" field and declare it as a local variable in the relevant methods.(½›µØùÿÿÿÿ
+bsquid:CommentedOutCodeLine>"<This block of commented-out lines of code should be removed.(êÛŠñ
+gsquid:CommentedOutCodeLineG"<This block of commented-out lines of code should be removed.(µÄ«úıÿÿÿÿ
+Esquid:S1611?"/Remove the parentheses around the "v" parameter(ÄÎ×l
+Esquid:S1611C"/Remove the parentheses around the "v" parameter(¹¸ñ
+bsquid:CommentedOutCodeLine<"<This block of commented-out lines of code should be removed.(ç¹‡¥
+Ksquid:S1611J"/Remove the parentheses around the "v" parameter(ğ¹¯ùùÿÿÿÿ
+asquid:CommentedOutCodeLineI"<This block of commented-out lines of code should be removed.(İ§ÔS
+bsquid:CommentedOutCodeLineK"<This block of commented-out lines of code should be removed.(ÍóÍò
+Ksquid:S1611L"/Remove the parentheses around the "v" parameter(¤†©øÿÿÿÿ
+gsquid:CommentedOutCodeLineE"<This block of commented-out lines of code should be removed.(®µ¯¢ùÿÿÿÿ
+gsquid:CommentedOutCodeLineB"<This block of commented-out lines of code should be removed.(×ä¢‹ıÿÿÿÿ
+Fsquid:S1611H"/Remove the parentheses around the "v" parameter(ñÙÒá
+rsquid:S1450"VRemove the "btnTras" field and declare it as a local variable in the relevant methods.(Ä“ïÓùÿÿÿÿ
+Esquid:S1611F"/Remove the parentheses around the "v" parameter(ğÒâB
+tsquid:S1450"XRemove the "btnAcenar" field and declare it as a local variable in the relevant methods.(„Õõãøÿÿÿÿ
+rsquid:S1450"VRemove the "btnCima" field and declare it as a local variable in the relevant methods.(Õë¸äúÿÿÿÿ
+psquid:S1450"YRemove the "btnDireita" field and declare it as a local variable in the relevant methods.(ùãØà
+jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(Ê„¾Ğÿÿÿÿÿ

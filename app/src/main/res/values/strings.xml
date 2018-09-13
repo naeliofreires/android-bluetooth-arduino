@@ -20,4 +20,6 @@
     <string name="title_activity_controle_personalizado">Controle Personalizado</string>
     <string name="controle_personalizado">Controle Personalizado</string>
     <string name="comandos_selecionados">Comandos selecionados...</string>
+    <string name="executar">EXECUTAR</string>
+    <string name="resetar">RESETAR</string>
 </resources>

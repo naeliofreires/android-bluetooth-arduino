@@ -17,6 +17,7 @@ import com.br.ufc.bluetooth_android_arduino.constants.Constants;
  */
 public class ControlePersonalizadoActivity extends AppCompatActivity {
 
+    private static final String RESET_COMANDOS = "1:90&2:90&3:90&4:90&5:90&6:90&7:90&8:90";
     private ConnectionThread connect;
 
     private SeekBar seekBar;
@@ -25,38 +26,41 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
     private TextView txtViewGrauMovimento;
     private EditText edTxtComandos;
 
-    private Button buttonAdd;
+    private Button btnAdd, btnExecutar, btnReset;
     private Button btnServo1, btnServo2,
             btnServo3, btnServo4,
             btnServo5, btnServo6,
             btnServo7, btnServo8;
 
-    private String sequencia_comandos;
+    private String sequenciaComandos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controle_personalizado);
 
-        if (conexao_bluetooth()) {
+        if (conexaoBluetooth()) {
             instancias();
 
+            actionReset();
             actionSeekBar();
             actionButtonAdd();
 
-            action_serv1();
-            action_serv2();
-            action_serv3();
-            action_serv4();
-            action_serv5();
-            action_serv6();
-            action_serv7();
-            action_serv8();
+            actionServ1();
+            actionServ2();
+            actionServ3();
+            actionServ4();
+            actionServ5();
+            actionServ6();
+            actionServ7();
+            actionServ8();
+
+            btnExecutar();
         } else
             Toast.makeText(this, "Conexão Falhou", Toast.LENGTH_LONG).show();
     }
 
-    private boolean conexao_bluetooth() {
+    private boolean conexaoBluetooth() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             String endereco = bundle.getString("devAddress");
@@ -69,12 +73,11 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
 
     private void instancias() {
 
-        sequencia_comandos = Constants.VAZIA;
         seekBar = findViewById(R.id.seekBarGraus);
         edTxtComandos = findViewById(R.id.edTxtComandos);
         edTxtComandos.setEnabled(false);
         txtViewGrauMovimento = findViewById(R.id.txtViewGrauMovimento);
-        buttonAdd = findViewById(R.id.buttonAdd);
+        btnAdd = findViewById(R.id.buttonAdd);
 
         btnServo1 = findViewById(R.id.btnServe1);
         btnServo2 = findViewById(R.id.btnServe2);
@@ -84,18 +87,23 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
         btnServo6 = findViewById(R.id.btnServe6);
         btnServo7 = findViewById(R.id.btnServe7);
         btnServo8 = findViewById(R.id.btnServe8);
+
+        btnReset = findViewById(R.id.btnReset); // button de resetar os servos
+        btnExecutar = findViewById(R.id.buttonExecutar); // button de executar comandos
+
+        limparSequenciaComandos();
     }
 
-    private void atualizar_edTxtComandos() {
-        edTxtComandos.setText(sequencia_comandos);
+    private void atualizarEdTxtComandos() {
+        edTxtComandos.setText(sequenciaComandos);
     }
 
     private void actionButtonAdd() {
-        buttonAdd.setOnClickListener(v -> {
-            if (!sequencia_comandos.isEmpty())
-                sequencia_comandos += progressoSeekBar;
+        btnAdd.setOnClickListener(v -> {
+            if (!sequenciaComandos.isEmpty())
+                sequenciaComandos += progressoSeekBar;
             seekBar.setProgress(0);
-            atualizar_edTxtComandos();
+            atualizarEdTxtComandos();
         });
     }
 
@@ -118,100 +126,116 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
         });
     }
 
-    private void action_serv1() {
+    private void actionServ1() {
         btnServo1.setOnClickListener(v -> {
 
-            if (sequencia_comandos.isEmpty())
-                sequencia_comandos += "1:";
+            if (sequenciaComandos.isEmpty())
+                sequenciaComandos += "1:";
             else
-                sequencia_comandos += "&1:";
+                sequenciaComandos += "&1:";
 
-            atualizar_edTxtComandos();
+            atualizarEdTxtComandos();
         });
     }
 
-    private void action_serv2() {
+    private void actionServ2() {
         btnServo2.setOnClickListener(v -> {
 
-            if (sequencia_comandos.isEmpty())
-                sequencia_comandos += "2:";
+            if (sequenciaComandos.isEmpty())
+                sequenciaComandos += "2:";
             else
-                sequencia_comandos += "&2:";
+                sequenciaComandos += "&2:";
 
-            atualizar_edTxtComandos();
+            atualizarEdTxtComandos();
         });
     }
 
-    private void action_serv3() {
+    private void actionServ3() {
         btnServo3.setOnClickListener(v -> {
 
-            if (sequencia_comandos.isEmpty())
-                sequencia_comandos += "3:";
+            if (sequenciaComandos.isEmpty())
+                sequenciaComandos += "3:";
             else
-                sequencia_comandos += "&3:";
+                sequenciaComandos += "&3:";
 
-            atualizar_edTxtComandos();
+            atualizarEdTxtComandos();
         });
     }
 
-    private void action_serv4() {
+    private void actionServ4() {
         btnServo4.setOnClickListener(v -> {
 
-            if (sequencia_comandos.isEmpty())
-                sequencia_comandos += "4:";
+            if (sequenciaComandos.isEmpty())
+                sequenciaComandos += "4:";
             else
-                sequencia_comandos += "&4:";
+                sequenciaComandos += "&4:";
 
-            atualizar_edTxtComandos();
+            atualizarEdTxtComandos();
         });
     }
 
-    private void action_serv5() {
+    private void actionServ5() {
         btnServo5.setOnClickListener(v -> {
 
-            if (sequencia_comandos.isEmpty())
-                sequencia_comandos += "5:";
+            if (sequenciaComandos.isEmpty())
+                sequenciaComandos += "5:";
             else
-                sequencia_comandos += "&5:";
+                sequenciaComandos += "&5:";
 
-            atualizar_edTxtComandos();
+            atualizarEdTxtComandos();
         });
     }
 
-    private void action_serv6() {
+    private void actionServ6() {
         btnServo6.setOnClickListener(v -> {
 
-            if (sequencia_comandos.isEmpty())
-                sequencia_comandos += "6:";
+            if (sequenciaComandos.isEmpty())
+                sequenciaComandos += "6:";
             else
-                sequencia_comandos += "&7:";
+                sequenciaComandos += "&7:";
 
-            atualizar_edTxtComandos();
+            atualizarEdTxtComandos();
         });
     }
 
-    private void action_serv7() {
+    private void actionServ7() {
         btnServo7.setOnClickListener(v -> {
 
-            if (sequencia_comandos.isEmpty())
-                sequencia_comandos += "7:";
+            if (sequenciaComandos.isEmpty())
+                sequenciaComandos += "7:";
             else
-                sequencia_comandos += "&7:";
+                sequenciaComandos += "&7:";
 
-            atualizar_edTxtComandos();
+            atualizarEdTxtComandos();
         });
     }
 
-    private void action_serv8() {
+    private void actionServ8() {
         btnServo8.setOnClickListener(v -> {
 
-            if (sequencia_comandos.isEmpty())
-                sequencia_comandos += "8:";
+            if (sequenciaComandos.isEmpty())
+                sequenciaComandos += "8:";
             else
-                sequencia_comandos += "&8:";
+                sequenciaComandos += "&8:";
 
-            atualizar_edTxtComandos();
+            atualizarEdTxtComandos();
         });
+    }
+
+    private void actionReset() {
+        btnReset.setOnClickListener(v -> sendMessage(RESET_COMANDOS));
+    }
+
+    private void btnExecutar() {
+        btnExecutar.setOnClickListener(v -> sendMessage(sequenciaComandos));
+    }
+
+    public void sendMessage(String msg) {
+        this.connect.write(msg.getBytes());
+    }
+
+    public void limparSequenciaComandos() {
+        sequenciaComandos = Constants.VAZIA;
     }
 
 }
