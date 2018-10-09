@@ -2,6 +2,7 @@ package com.br.ufc.bluetooth_android_arduino.controles;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -17,30 +18,31 @@ import com.br.ufc.bluetooth_android_arduino.constants.Constants;
  */
 public class ControlePersonalizadoActivity extends AppCompatActivity {
 
-    private static final String RESET_COMANDOS = "1:90&2:90&3:90&4:90&5:90&6:90&7:90&8:90";
+    private static final String RESET_COMMANDS = "1:90&2:90&3:90&4:90&5:90&6:90&7:90&8:90";
+
     private ConnectionThread connect;
 
     private SeekBar seekBar;
-    private String progressoSeekBar;
+    private String progressSeekBar;
 
     private TextView txtViewGrauMovimento;
-    private EditText edTxtComandos;
+    private EditText editTxtCommands;
 
-    private Button btnAdd, btnExecutar, btnReset;
+    private Button btnAdd, btnRun, btnReset;
     private Button btnServo1, btnServo2,
             btnServo3, btnServo4,
             btnServo5, btnServo6,
             btnServo7, btnServo8;
 
-    private String sequenciaComandos;
+    private String sequencesCommands;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controle_personalizado);
 
-        if (conexaoBluetooth()) {
-            instancias();
+        if (connectionBluetooth()) {
+            instances();
 
             actionReset();
             actionSeekBar();
@@ -55,27 +57,27 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
             actionServ7();
             actionServ8();
 
-            btnExecutar();
+            btnRun();
         } else
-            Toast.makeText(this, "Conexão Falhou", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "connection fail", Toast.LENGTH_LONG).show();
     }
 
-    private boolean conexaoBluetooth() {
+    private boolean connectionBluetooth() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            String endereco = bundle.getString("devAddress");
-            connect = new ConnectionThread(endereco);
+            String address = bundle.getString("devAddress");
+            connect = new ConnectionThread(address);
             connect.start();
             return true;
         }
         return false;
     }
 
-    private void instancias() {
+    private void instances() {
 
         seekBar = findViewById(R.id.seekBarGraus);
-        edTxtComandos = findViewById(R.id.edTxtComandos);
-        edTxtComandos.setEnabled(false);
+        editTxtCommands = findViewById(R.id.edTxtComandos);
+        editTxtCommands.setEnabled(false);
         txtViewGrauMovimento = findViewById(R.id.txtViewGrauMovimento);
         btnAdd = findViewById(R.id.buttonAdd);
 
@@ -88,22 +90,22 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
         btnServo7 = findViewById(R.id.btnServe7);
         btnServo8 = findViewById(R.id.btnServe8);
 
-        btnReset = findViewById(R.id.btnReset); // button de resetar os servos
-        btnExecutar = findViewById(R.id.buttonExecutar); // button de executar comandos
+        btnReset = findViewById(R.id.btnReset); // button to reset the servs
+        btnRun = findViewById(R.id.buttonExecutar); // button de executar comandos
 
-        limparSequenciaComandos();
+        clearSequenceCommands();
     }
 
-    private void atualizarEdTxtComandos() {
-        edTxtComandos.setText(sequenciaComandos);
+    private void updateEdTxtCommands() {
+        editTxtCommands.setText(sequencesCommands);
     }
 
     private void actionButtonAdd() {
         btnAdd.setOnClickListener(v -> {
-            if (!sequenciaComandos.isEmpty())
-                sequenciaComandos += progressoSeekBar;
+            if (!sequencesCommands.isEmpty())
+                sequencesCommands += progressSeekBar;
             seekBar.setProgress(0);
-            atualizarEdTxtComandos();
+            updateEdTxtCommands();
         });
     }
 
@@ -111,17 +113,17 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                txtViewGrauMovimento.setText("Progresso: " + progress);
+                txtViewGrauMovimento.setText("Progress: " + progress);
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // Toast.makeText(getApplicationContext(), "SeekBar pressionado!", Toast.LENGTH_SHORT).show();
+                // When SeekBar is held down
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                progressoSeekBar = String.valueOf(seekBar.getProgress());
+                progressSeekBar = String.valueOf(seekBar.getProgress());
             }
         });
     }
@@ -129,113 +131,117 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
     private void actionServ1() {
         btnServo1.setOnClickListener(v -> {
 
-            if (sequenciaComandos.isEmpty())
-                sequenciaComandos += "1:";
+            if (sequencesCommands.isEmpty())
+                sequencesCommands += "1:";
             else
-                sequenciaComandos += "&1:";
+                sequencesCommands += "&1:";
 
-            atualizarEdTxtComandos();
+            updateEdTxtCommands();
         });
     }
 
     private void actionServ2() {
         btnServo2.setOnClickListener(v -> {
 
-            if (sequenciaComandos.isEmpty())
-                sequenciaComandos += "2:";
+            if (sequencesCommands.isEmpty())
+                sequencesCommands += "2:";
             else
-                sequenciaComandos += "&2:";
+                sequencesCommands += "&2:";
 
-            atualizarEdTxtComandos();
+            updateEdTxtCommands();
         });
     }
 
     private void actionServ3() {
         btnServo3.setOnClickListener(v -> {
 
-            if (sequenciaComandos.isEmpty())
-                sequenciaComandos += "3:";
+            if (sequencesCommands.isEmpty())
+                sequencesCommands += "3:";
             else
-                sequenciaComandos += "&3:";
+                sequencesCommands += "&3:";
 
-            atualizarEdTxtComandos();
+            updateEdTxtCommands();
         });
     }
 
     private void actionServ4() {
         btnServo4.setOnClickListener(v -> {
 
-            if (sequenciaComandos.isEmpty())
-                sequenciaComandos += "4:";
+            if (sequencesCommands.isEmpty())
+                sequencesCommands += "4:";
             else
-                sequenciaComandos += "&4:";
+                sequencesCommands += "&4:";
 
-            atualizarEdTxtComandos();
+            updateEdTxtCommands();
         });
     }
 
     private void actionServ5() {
         btnServo5.setOnClickListener(v -> {
 
-            if (sequenciaComandos.isEmpty())
-                sequenciaComandos += "5:";
+            if (sequencesCommands.isEmpty())
+                sequencesCommands += "5:";
             else
-                sequenciaComandos += "&5:";
+                sequencesCommands += "&5:";
 
-            atualizarEdTxtComandos();
+            updateEdTxtCommands();
         });
     }
 
     private void actionServ6() {
         btnServo6.setOnClickListener(v -> {
 
-            if (sequenciaComandos.isEmpty())
-                sequenciaComandos += "6:";
+            if (sequencesCommands.isEmpty())
+                sequencesCommands += "6:";
             else
-                sequenciaComandos += "&7:";
+                sequencesCommands += "&7:";
 
-            atualizarEdTxtComandos();
+            updateEdTxtCommands();
         });
     }
 
     private void actionServ7() {
         btnServo7.setOnClickListener(v -> {
 
-            if (sequenciaComandos.isEmpty())
-                sequenciaComandos += "7:";
+            if (sequencesCommands.isEmpty())
+                sequencesCommands += "7:";
             else
-                sequenciaComandos += "&7:";
+                sequencesCommands += "&7:";
 
-            atualizarEdTxtComandos();
+            updateEdTxtCommands();
         });
     }
 
     private void actionServ8() {
         btnServo8.setOnClickListener(v -> {
 
-            if (sequenciaComandos.isEmpty())
-                sequenciaComandos += "8:";
+            if (sequencesCommands.isEmpty())
+                sequencesCommands += "8:";
             else
-                sequenciaComandos += "&8:";
+                sequencesCommands += "&8:";
 
-            atualizarEdTxtComandos();
+            updateEdTxtCommands();
         });
     }
 
     private void actionReset() {
-        btnReset.setOnClickListener(v -> sendMessage(RESET_COMANDOS));
+        btnReset.setOnClickListener(v -> sendMessage(RESET_COMMANDS));
     }
 
-    private void btnExecutar() {
-        btnExecutar.setOnClickListener(v -> sendMessage(sequenciaComandos));
+    private void btnRun() {
+        btnRun.setOnClickListener(v -> sendMessage(sequencesCommands));
     }
 
     public void sendMessage(String msg) {
-        this.connect.write(msg.getBytes());
+        byte[] data = msg.getBytes();
+        this.connect.write(data);
+
+        this.clearSequenceCommands();
     }
 
-    public void limparSequenciaComandos() {
-        sequenciaComandos = Constants.VAZIA;
+    public void clearSequenceCommands() {
+        sequencesCommands = Constants.EMPTY;
+        this.updateEdTxtCommands();
     }
 
 }

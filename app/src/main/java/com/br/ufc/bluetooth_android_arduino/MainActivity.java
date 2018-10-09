@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.dispositivosAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
-        this.btnControleRemoto.setOnClickListener(view -> configurationDialogControleRemoto());
+        this.btnControleRemoto.setOnClickListener(view -> configurationDialogRemoteControl());
         this.btnControlePersonalizado.setOnClickListener(v -> configurationDialogControlePersonalizado());
 
         this.procurarDispositivos();
@@ -90,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(enableBtIntent, ENABLE_BLUETOOTH);
             Toast.makeText(getApplicationContext(), "Solicitação do bluetooth!", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplicationContext(), "Bluetooth esta ativado!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Bluetooth Activated!", Toast.LENGTH_SHORT).show();
         }
     }
 
     void procurarDispositivos() {
         this.btnProcurarDispositivos = findViewById(R.id.buttonProcurarDispositivos);
-        this.btnProcurarDispositivos.setVisibility(View.INVISIBLE); // escondendo botão 'procurar dispositivos'
+//        this.btnProcurarDispositivos.setVisibility(View.INVISIBLE); // escondendo botão 'procurar dispositivos'
         this.btnProcurarDispositivos.setOnClickListener(v -> discoverDevices());
     }
 
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         this.btnHabilitarVisibilidade.setOnClickListener(v -> enableVisibility());
     }
 
-    private void configurationDialogControleRemoto() {
+    private void configurationDialogRemoteControl() {
 
         dialogForConnectionBluetooth = new AlertDialog.Builder(MainActivity.this);
         dialogForConnectionBluetooth.setTitle("Conecte-se ao bluetooth...");

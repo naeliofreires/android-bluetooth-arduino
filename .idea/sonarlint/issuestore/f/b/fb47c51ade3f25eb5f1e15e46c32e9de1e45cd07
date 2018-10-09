@@ -1,11 +1,12 @@
 
-Dsquid:S1659"'Declare "btnServo2" on a separate line.(æöçZ8Èª„ôÜ,
-nsquid:CommentedOutCodeLinet"<This block of commented-out lines of code should be removed.(¡¡Ëùÿÿÿÿ8Èª„ôÜ,
-Lsquid:S1659")Declare "btnExecutar" on a separate line.(Êğ§öøÿÿÿÿ8Èª„ôÜ,
-Jsquid:S1659"'Declare "btnServo4" on a separate line.(ÌÛ—Ìÿÿÿÿÿ8Èª„ôÜ,
-qsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ä¾ıÁøÿÿÿÿ8Èª„ôÜ,
-Jsquid:S1659 "'Declare "btnServo7" on a separate line.(Î›ö©ûÿÿÿÿ8Èª„ôÜ,
-Jsquid:S1659"'Declare "btnServo6" on a separate line.(ñ’òØÿÿÿÿÿ8Èª„ôÜ,
-Jsquid:S1659"'Declare "btnServo5" on a separate line.(ñ’òØÿÿÿÿÿ8Èª„ôÜ,
-Jsquid:S1659"'Declare "btnServo3" on a separate line.(ÌÛ—Ìÿÿÿÿÿ8Èª„ôÜ,
-Jsquid:S1659 "'Declare "btnServo8" on a separate line.(Î›ö©ûÿÿÿÿ8Èª„ôÜ,
+qsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ä¾ıÁøÿÿÿÿ8•¼ãöä,
+]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8Â„åöä,
+Jsquid:S1659!"'Declare "btnServo3" on a separate line.(ÌÛ—Ìÿÿÿÿÿ8•¼ãöä,
+Gsquid:S1659"$Declare "btnRun" on a separate line.(àØ‹øÿÿÿÿ8•¼ãöä,
+Isquid:S1659"&Declare "btnReset" on a separate line.(àØ‹øÿÿÿÿ8•¼ãöä,
+Dsquid:S1659 "'Declare "btnServo2" on a separate line.(æöçZ8•¼ãöä,
+Jsquid:S1659""'Declare "btnServo6" on a separate line.(ñ’òØÿÿÿÿÿ8•¼ãöä,
+Jsquid:S1659#"'Declare "btnServo8" on a separate line.(Î›ö©ûÿÿÿÿ8•¼ãöä,
+Jsquid:S1659#"'Declare "btnServo7" on a separate line.(Î›ö©ûÿÿÿÿ8•¼ãöä,
+Jsquid:S1659!"'Declare "btnServo4" on a separate line.(ÌÛ—Ìÿÿÿÿÿ8•¼ãöä,
+Jsquid:S1659""'Declare "btnServo5" on a separate line.(ñ’òØÿÿÿÿÿ8•¼ãöä,

@@ -28,7 +28,7 @@ public class ControlleRemotoActivity extends AppCompatActivity {
     private Button btnExecutar;
 
     private ConnectionThread connect;
-    private ArrayList<String> comandos;
+    private ArrayList<String> commands;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,47 +48,47 @@ public class ControlleRemotoActivity extends AppCompatActivity {
         this.btnAcenar = findViewById(R.id.buttonTchau);
         this.btnDesligar = findViewById(R.id.buttonDesligar);
 
-        this.comandos = new ArrayList<>();
+        this.commands = new ArrayList<>();
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            String endereco = bundle.getString("devAddress");
-            connect = new ConnectionThread(endereco);
+            String address = bundle.getString("devAddress");
+            connect = new ConnectionThread(address);
             connect.start();
         }
 
-        // foward_();
-        this.btnCima.setOnClickListener((v) -> this.comandos.add("w"));
+        // forward_();
+        this.btnCima.setOnClickListener(v -> this.commands.add("w"));
         // back_();
-        this.btnTras.setOnClickListener((v) -> this.comandos.add("s"));
+        this.btnTras.setOnClickListener(v -> this.commands.add("s"));
         // turn_right_();
-        this.btnDireita.setOnClickListener((v) -> this.comandos.add("d"));
+        this.btnDireita.setOnClickListener(v -> this.commands.add("d"));
         // turn_left_();
-        this.btnEsquerda.setOnClickListener((v) -> this.comandos.add("a"));
+        this.btnEsquerda.setOnClickListener(v -> this.commands.add("a"));
 
         //stand_();
-        this.btnUp.setOnClickListener((v) -> this.comandos.add("e"));
+        this.btnUp.setOnClickListener(v -> this.commands.add("e"));
         // sit_();
-        this.btnDown.setOnClickListener((v) -> this.comandos.add("q"));
+        this.btnDown.setOnClickListener(v -> this.commands.add("q"));
         // wave_();
-        this.btnAcenar.setOnClickListener((v) -> this.comandos.add("b"));
+        this.btnAcenar.setOnClickListener(v -> this.commands.add("b"));
         // shutdown();
-        this.btnDesligar.setOnClickListener((v) -> this.comandos.add("x"));
+        this.btnDesligar.setOnClickListener(v -> this.commands.add("x"));
 
-        this.btnExecutar.setOnClickListener((v) -> {
+        this.btnExecutar.setOnClickListener(v -> {
             sendMessage();
-            this.limparComandos();
+            this.clearCommands();
         });
     }
 
     public void sendMessage() {
-        for (String srt : this.comandos) {
+        for (String srt : this.commands) {
             byte[] data = srt.getBytes();
             this.connect.write(data);
         }
     }
 
-    public void limparComandos() {
-        this.comandos = new ArrayList<>();
+    public void clearCommands() {
+        this.commands = new ArrayList<>();
     }
 }
