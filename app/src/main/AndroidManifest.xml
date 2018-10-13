@@ -24,21 +24,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".activitys.MainActivity" />
 
         <activity
-            android:name=".controles.ControlleRemotoActivity"
+            android:name=".activitys.controles.ControlleRemotoActivity"
             android:configChanges="orientation"
             android:screenOrientation="landscape" />
 
         <activity
-            android:name=".ProcurarDispositivosActivity"
+            android:name=".activitys.ProcurarDispositivosActivity"
             android:label="@string/descobrir_aparelhos"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".activitys.MainActivity"
             tools:targetApi="jelly_bean" />
 
         <activity
-            android:name=".controles.ControlePersonalizadoActivity"
+            android:name=".activitys.controles.ControlePersonalizadoActivity"
             android:label="@string/title_activity_controle_personalizado"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />

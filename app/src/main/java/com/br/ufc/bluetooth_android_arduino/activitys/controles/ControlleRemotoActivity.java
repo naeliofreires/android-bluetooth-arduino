@@ -1,10 +1,12 @@
-package com.br.ufc.bluetooth_android_arduino.controles;
+package com.br.ufc.bluetooth_android_arduino.activitys.controles;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.br.ufc.bluetooth_android_arduino.ConnectionThread;
+import com.br.ufc.bluetooth_android_arduino.activitys.ConnectionThread;
 import com.br.ufc.bluetooth_android_arduino.R;
 
 import java.util.ArrayList;
@@ -23,8 +25,8 @@ public class ControlleRemotoActivity extends AppCompatActivity {
     private Button btnUp;
     private Button btnDown;
 
-    private Button btnAcenar;
-    private Button btnDesligar;
+    private Button btnWave;
+    private Button btnShutdown;
     private Button btnExecutar;
 
     private ConnectionThread connect;
@@ -45,8 +47,8 @@ public class ControlleRemotoActivity extends AppCompatActivity {
         this.btnUp = findViewById(R.id.buttonUp);
         this.btnDown = findViewById(R.id.buttonDown);
 
-        this.btnAcenar = findViewById(R.id.buttonTchau);
-        this.btnDesligar = findViewById(R.id.buttonDesligar);
+        this.btnWave = findViewById(R.id.buttonTchau);
+        this.btnShutdown = findViewById(R.id.buttonDesligar);
 
         this.commands = new ArrayList<>();
 
@@ -59,21 +61,27 @@ public class ControlleRemotoActivity extends AppCompatActivity {
 
         // forward_();
         this.btnCima.setOnClickListener(v -> this.commands.add("w"));
+
         // back_();
         this.btnTras.setOnClickListener(v -> this.commands.add("s"));
+
         // turn_right_();
         this.btnDireita.setOnClickListener(v -> this.commands.add("d"));
+
         // turn_left_();
         this.btnEsquerda.setOnClickListener(v -> this.commands.add("a"));
 
         //stand_();
         this.btnUp.setOnClickListener(v -> this.commands.add("e"));
+
         // sit_();
         this.btnDown.setOnClickListener(v -> this.commands.add("q"));
+
         // wave_();
-        this.btnAcenar.setOnClickListener(v -> this.commands.add("b"));
+        this.btnWave.setOnClickListener(v -> this.commands.add("b"));
+
         // shutdown();
-        this.btnDesligar.setOnClickListener(v -> this.commands.add("x"));
+        this.btnShutdown.setOnClickListener(v -> this.commands.add("x"));
 
         this.btnExecutar.setOnClickListener(v -> {
             sendMessage();
@@ -86,6 +94,13 @@ public class ControlleRemotoActivity extends AppCompatActivity {
             byte[] data = srt.getBytes();
             this.connect.write(data);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        connect.cancel();
+        Toast.makeText(this,"Bluetooth desconectado!",Toast.LENGTH_LONG).show();
     }
 
     public void clearCommands() {

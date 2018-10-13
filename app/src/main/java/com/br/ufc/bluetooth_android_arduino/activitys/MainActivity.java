@@ -1,4 +1,4 @@
-package com.br.ufc.bluetooth_android_arduino;
+package com.br.ufc.bluetooth_android_arduino.activitys;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -14,8 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.br.ufc.bluetooth_android_arduino.controles.ControlePersonalizadoActivity;
-import com.br.ufc.bluetooth_android_arduino.controles.ControlleRemotoActivity;
+import com.br.ufc.bluetooth_android_arduino.R;
+import com.br.ufc.bluetooth_android_arduino.activitys.controles.ControlePersonalizadoActivity;
+import com.br.ufc.bluetooth_android_arduino.activitys.controles.ControlleRemotoActivity;
 
 import static com.br.ufc.bluetooth_android_arduino.constants.Constants.ENABLE_BLUETOOTH;
 import static com.br.ufc.bluetooth_android_arduino.constants.Constants.SELECT_DISCOVERED_DEVICE;
@@ -28,31 +29,20 @@ public class MainActivity extends AppCompatActivity {
     private Button btnProcurarDispositivos;
     private Button btnHabilitarVisibilidade;
 
-    /* connection thread */
     private ConnectionThread connect;
-
-    /* alert dialog */
-    private ArrayAdapter<String> dispositivosAdapter;
-
-    /*  define um receptor para o evento de descoberta de dispositivo */
+    private ArrayAdapter<String> devicesAdapter;
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
 
         /*  Este método é executado sempre que um novo dispositivo for descoberto. */
         public void onReceive(Context context, Intent intent) {
-
-            /**
-             * Obtem o Intent que gerou a ação.
-             * Verifica se a ação corresponde à descoberta de um novo dispositivo.
-             * Obtem um objeto que representa o dispositivo Bluetooth descoberto.
-             * Exibe seu nome e endereço na lista.
-             */
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                dispositivosAdapter.add(device.getName() + "\n" + device.getAddress());
+                devicesAdapter.add(device.getName() + "\n" + device.getAddress());
             }
         }
     };
+
     private AlertDialog.Builder dialogForConnectionBluetooth;
 
     @Override
@@ -60,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.configuracaoBluetooth();
+        this.configurationBluetooth();
 
         this.btnControleRemoto = findViewById(R.id.btnControleRemoto);
         this.btnControlePersonalizado = findViewById(R.id.btnControlePersonalizado);
 
-        this.dispositivosAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        this.devicesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
         this.btnControleRemoto.setOnClickListener(view -> configurationDialogRemoteControl());
         this.btnControlePersonalizado.setOnClickListener(v -> configurationDialogControlePersonalizado());
@@ -74,33 +64,32 @@ public class MainActivity extends AppCompatActivity {
         this.habilitarVisibilidade();
     }
 
-    void configuracaoBluetooth() {
+    void configurationBluetooth() {
         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        if (btAdapter == null) {
-            Toast.makeText(getApplicationContext(), "O bluetooth não esta funcioando!", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "Otimo, bluetooth funcionado!", Toast.LENGTH_SHORT).show();
-        }
+        if (btAdapter == null)
+            Toast.makeText(MainActivity.this, "O bluetooth não esta funcioando!", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(MainActivity.this, "Otimo, bluetooth funcionado!", Toast.LENGTH_SHORT).show();
 
-        //  ativando o  bluetooth com a permissão do usuário
         assert btAdapter != null;
+
         if (!btAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, ENABLE_BLUETOOTH);
             Toast.makeText(getApplicationContext(), "Solicitação do bluetooth!", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "Bluetooth Activated!", Toast.LENGTH_SHORT).show();
-        }
+        } else
+            Toast.makeText(MainActivity.this, "Bluetooth Activated!", Toast.LENGTH_SHORT).show();
+
     }
 
-    void procurarDispositivos() {
+    public void procurarDispositivos() {
         this.btnProcurarDispositivos = findViewById(R.id.buttonProcurarDispositivos);
-//        this.btnProcurarDispositivos.setVisibility(View.INVISIBLE); // escondendo botão 'procurar dispositivos'
+        // this.btnProcurarDispositivos.setVisibility(View.INVISIBLE); // escondendo botão 'procurar dispositivos'
         this.btnProcurarDispositivos.setOnClickListener(v -> discoverDevices());
     }
 
-    void habilitarVisibilidade() {
+    public void habilitarVisibilidade() {
         this.btnHabilitarVisibilidade = findViewById(R.id.buttonHabilitarVisibilidade);
         this.btnHabilitarVisibilidade.setVisibility(View.INVISIBLE);
         this.btnHabilitarVisibilidade.setOnClickListener(v -> enableVisibility());
@@ -119,10 +108,11 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(receiver, filter);
 
-        dialogForConnectionBluetooth.setAdapter(dispositivosAdapter, (dialog, which) -> {
+        dialogForConnectionBluetooth.setAdapter(devicesAdapter, (dialog, which) -> {
 
-            String item = dispositivosAdapter.getItem(which);
+            String item = devicesAdapter.getItem(which);
             assert item != null;
+
             String devName = item.substring(0, item.indexOf("\n"));
             String devAddress = item.substring(item.indexOf("\n") + 1, item.length());
 
@@ -160,10 +150,11 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(receiver, filter);
 
-        dialogForConnectionBluetooth.setAdapter(dispositivosAdapter, (dialog, which) -> {
+        dialogForConnectionBluetooth.setAdapter(devicesAdapter, (dialog, which) -> {
 
-            String item = dispositivosAdapter.getItem(which);
+            String item = devicesAdapter.getItem(which);
             assert item != null;
+
             String devName = item.substring(0, item.indexOf("\n"));
             String devAddress = item.substring(item.indexOf("\n") + 1, item.length());
 
@@ -211,9 +202,8 @@ public class MainActivity extends AppCompatActivity {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-            } else {
+            } else
                 Toast.makeText(getApplicationContext(), "Nenhum dispositivo selecionado", Toast.LENGTH_SHORT).show();
-            }
         }
     }
 

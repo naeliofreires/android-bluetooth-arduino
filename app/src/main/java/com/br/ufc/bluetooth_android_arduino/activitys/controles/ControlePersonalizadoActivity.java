@@ -1,16 +1,15 @@
-package com.br.ufc.bluetooth_android_arduino.controles;
+package com.br.ufc.bluetooth_android_arduino.activitys.controles;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.br.ufc.bluetooth_android_arduino.ConnectionThread;
 import com.br.ufc.bluetooth_android_arduino.R;
+import com.br.ufc.bluetooth_android_arduino.activitys.ConnectionThread;
 import com.br.ufc.bluetooth_android_arduino.constants.Constants;
 
 /**
@@ -244,4 +243,10 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
         this.updateEdTxtCommands();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        connect.cancel();
+        Toast.makeText(this, "Bluetooth desconectado!", Toast.LENGTH_LONG).show();
+    }
 }

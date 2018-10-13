@@ -5,7 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.br.ufc.bluetooth_android_arduino.MainActivity">
+    tools:context="com.br.ufc.bluetooth_android_arduino.activitys.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.br.ufc.bluetooth_android_arduino.MainActivity;
+import com.br.ufc.bluetooth_android_arduino.activitys.MainActivity;
 import com.br.ufc.bluetooth_android_arduino.R;
 
 public class SplashActivity extends Activity {

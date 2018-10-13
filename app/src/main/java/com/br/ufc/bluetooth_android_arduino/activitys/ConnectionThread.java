@@ -1,12 +1,13 @@
-package com.br.ufc.bluetooth_android_arduino;
+package com.br.ufc.bluetooth_android_arduino.activitys;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.os.Message;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,54 +21,46 @@ import java.util.UUID;
 
 public class ConnectionThread extends Thread {
 
-
+    InputStream input = null;
+    OutputStream output = null;
     private boolean server;
     private boolean running = false;
-
     private String btDevAddress = null;
     private String myUUID = "00001101-0000-1000-8000-00805F9B34FB";
-
     private BluetoothSocket btSocket = null;
     private BluetoothServerSocket btServerSocket = null;
 
-    // ENTRADA E SAIDA DE DADOS
-    InputStream input = null;
-    OutputStream output = null;
-
-    // ATUAR COMO SERVIDOR
+    // act as a server
     public ConnectionThread() {
         this.server = true;
     }
 
-    // ATUAR COMO CLIENTE
+    // act as a customer
     public ConnectionThread(String btDevAddress) {
         this.server = false;
         this.btDevAddress = btDevAddress;
     }
 
-    public void run(){
+    public void run() {
         this.running = true;
         BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        // SE FOR ATUAR COMO SERVIDOR
-        if(this.server){
-            try{
+        if (this.server) {// if you are a server
+            try {
                 //USADO PARA ESTABELECER CONEXÃO, FICARÁ EM MODO DE ESPERA ATÉ A CONEXÃO SER REALIZADA
                 btServerSocket = btAdapter.listenUsingRfcommWithServiceRecord("Super Bluetooth", UUID.fromString(myUUID));
                 btSocket = btServerSocket.accept();
 
-                // SE A CONEXÃO ESTABELECIDA LIBERA O SOCKET
-                if(btSocket != null)
-                    btServerSocket.close();
+                // if connection OK, free socket
+                if (btSocket != null) btServerSocket.close();
 
-            }catch (IOException ex){
+            } catch (IOException ex) {
                 ex.printStackTrace();
                 toMainActivity("---N".getBytes());
             }
 
-        // SE FOR ATUAR COMO CLIENTE
-        }
-        else{
+
+        } else {// if you are a customer
             try {
                 BluetoothDevice btDevice = btAdapter.getRemoteDevice(btDevAddress);
                 btSocket = btDevice.createRfcommSocketToServiceRecord(UUID.fromString(myUUID));
@@ -77,38 +70,33 @@ public class ConnectionThread extends Thread {
                 if (btSocket != null)
                     btSocket.connect();
 
-
-
-            }catch (IOException ex){
+            } catch (IOException ex) {
                 ex.printStackTrace();
                 toMainActivity("---N".getBytes());
             }
         }
 
-        // RECEBER
-        if(btSocket != null){
-
-            // AVISANDO QUE A CONEXÃO FOI ESTABELECIDA A ACTIVITY PRINCIPAL
-            toMainActivity("---S".getBytes());
+        // receive
+        if (btSocket != null) {
             try {
 
-                // REFERENCIAS PARA ENTRADA E SAIDA DE DADOS
+                // reference to input and output of data
                 input = btSocket.getInputStream();
                 output = btSocket.getOutputStream();
 
-                byte[] buffer = new byte[1024]; // GUARDAR A MENSAGEM EM BYTES
-                int bytes; // REPRESENTAR O NUMERO DE BYTES LIDOS
+                byte[] buffer = new byte[1024]; // save msg in bytes
+                int bytes; // qtd at bytes
 
 
                 // 1 => FICAR EM ESTADO DE ESPERA ATE RECEBER ALGO
                 // 2 => ARMAZENAR A MENSAGEM NO BUFFER
                 // 3 => ENVIA A MENSAGEM RECEBIDA EM BYTES
                 // 4 => FICARA EM ESTADO TRUE ATE A VARIAVEL 'running' ASSUMIR FALSE
-                while(running) {
+                while (running) {
                     bytes = input.read(buffer);
                     toMainActivity(Arrays.copyOfRange(buffer, 0, bytes));
                 }
-            }catch (IOException ex){
+            } catch (IOException ex) {
                 ex.printStackTrace();
                 toMainActivity("---N".getBytes());
             }
@@ -123,12 +111,9 @@ public class ConnectionThread extends Thread {
 //        MainActivity.handler.sendMessage(message);
     }
 
-    /**
-     * Escrever Dados
-     */
-    public void write(byte[] data) {
+    public void write(byte[] data) { // send data
 
-        if(output != null) {
+        if (output != null) {
             try {
                 output.write(data);
             } catch (IOException e) {
@@ -139,13 +124,12 @@ public class ConnectionThread extends Thread {
         }
     }
 
-    // METODO PARA ENCERRAR A CONEXÃO
-    public void cancel() {
 
+    public void cancel() { // close connection
         try {
             running = false;
-            btServerSocket.close();
-            btSocket.close();
+            if (btSocket != null) btSocket.close();
+            if (btServerSocket != null) btServerSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
