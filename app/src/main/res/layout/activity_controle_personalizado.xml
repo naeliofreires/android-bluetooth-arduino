@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.controles.ControlePersonalizadoActivity">
+    tools:context=".activitys.controles.CustomControlActivity">
 
 
     <Button
@@ -106,7 +106,7 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/buttonExecutar"
+        android:id="@+id/btnRun"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/edTxtComandos"
@@ -120,9 +120,9 @@
         android:id="@+id/buttonAdd"
         android:layout_width="66dp"
         android:layout_height="32dp"
-        android:layout_alignEnd="@+id/buttonExecutar"
+        android:layout_alignEnd="@+id/btnRun"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/buttonExecutar"
+        android:layout_alignRight="@+id/btnRun"
         android:layout_marginBottom="112dp"
         android:text="+" />
 
@@ -136,7 +136,7 @@
         android:layout_marginBottom="119dp" />
 
     <TextView
-        android:id="@+id/txtViewGrauMovimento"
+        android:id="@+id/txtViewRateMovimento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />

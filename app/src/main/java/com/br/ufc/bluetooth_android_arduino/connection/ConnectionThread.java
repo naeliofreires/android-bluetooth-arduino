@@ -1,4 +1,4 @@
-package com.br.ufc.bluetooth_android_arduino.activitys;
+package com.br.ufc.bluetooth_android_arduino.connection;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -108,7 +108,6 @@ public class ConnectionThread extends Thread {
         Bundle bundle = new Bundle();
         bundle.putByteArray("data", data);
         message.setData(bundle);
-//        MainActivity.handler.sendMessage(message);
     }
 
     public void write(byte[] data) { // send data

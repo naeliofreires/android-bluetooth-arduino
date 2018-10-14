@@ -27,7 +27,7 @@
         <activity android:name=".activitys.MainActivity" />
 
         <activity
-            android:name=".activitys.controles.ControlleRemotoActivity"
+            android:name=".activitys.controles.RemoteControlActivity"
             android:configChanges="orientation"
             android:screenOrientation="landscape" />
 
@@ -38,7 +38,7 @@
             tools:targetApi="jelly_bean" />
 
         <activity
-            android:name=".activitys.controles.ControlePersonalizadoActivity"
+            android:name=".activitys.controles.CustomControlActivity"
             android:label="@string/title_activity_controle_personalizado"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -15,8 +15,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.br.ufc.bluetooth_android_arduino.R;
-import com.br.ufc.bluetooth_android_arduino.activitys.controles.ControlePersonalizadoActivity;
-import com.br.ufc.bluetooth_android_arduino.activitys.controles.ControlleRemotoActivity;
+import com.br.ufc.bluetooth_android_arduino.activitys.controles.CustomControlActivity;
+import com.br.ufc.bluetooth_android_arduino.activitys.controles.RemoteControlActivity;
+import com.br.ufc.bluetooth_android_arduino.connection.ConnectionThread;
 
 import static com.br.ufc.bluetooth_android_arduino.constants.Constants.ENABLE_BLUETOOTH;
 import static com.br.ufc.bluetooth_android_arduino.constants.Constants.SELECT_DISCOVERED_DEVICE;
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             builderInner.setMessage("Nome: " + devName + "\nEndereço:" + devAddress);
 
             builderInner.setPositiveButton("Conectar", (dialog1, which1) -> {
-                Intent intentControleRemoto = new Intent(MainActivity.this, ControlleRemotoActivity.class);
+                Intent intentControleRemoto = new Intent(MainActivity.this, RemoteControlActivity.class);
                 intentControleRemoto.putExtra("devAddress", devAddress);
                 startActivity(intentControleRemoto);
             });
@@ -164,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             builderInner.setMessage("Nome: " + devName + "\nEndereço:" + devAddress);
 
             builderInner.setPositiveButton("Conectar", (dialog1, which1) -> {
-                Intent intentControleRemoto = new Intent(MainActivity.this, ControlePersonalizadoActivity.class);
+                Intent intentControleRemoto = new Intent(MainActivity.this, CustomControlActivity.class);
                 intentControleRemoto.putExtra("devAddress", devAddress);
                 startActivity(intentControleRemoto);
             });

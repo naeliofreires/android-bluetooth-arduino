@@ -2,32 +2,41 @@ package com.br.ufc.bluetooth_android_arduino.activitys.controles;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.br.ufc.bluetooth_android_arduino.activitys.ConnectionThread;
 import com.br.ufc.bluetooth_android_arduino.R;
+import com.br.ufc.bluetooth_android_arduino.connection.ConnectionThread;
+import com.br.ufc.bluetooth_android_arduino.constants.Constants;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+
 /**
- * Controller de Alto Nível - Comandos já pré-determinado
+ * Controller de Alto Nível - Comandos já pré-definidos
  */
-public class ControlleRemotoActivity extends AppCompatActivity {
+public class RemoteControlActivity extends AppCompatActivity {
 
-    private Button btnCima;
-    private Button btnTras;
+    @BindView(R.id.btnFront)
+    Button btnFront;
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.btnRight)
+    Button btnRight;
+    @BindView(R.id.btnLeft)
+    Button btnLeft;
+    @BindView(R.id.buttonUp)
+    Button btnUp;
+    @BindView(R.id.buttonDown)
+    Button btnDown;
 
-    private Button btnDireita;
-    private Button btnEsquerda;
-
-    private Button btnUp;
-    private Button btnDown;
-
-    private Button btnWave;
-    private Button btnShutdown;
-    private Button btnExecutar;
+    @BindView(R.id.btnWave)
+    Button btnWave;
+    @BindView(R.id.btnShutdown)
+    Button btnShutdown;
+    @BindView(R.id.btnRun)
+    Button btnRun;
 
     private ConnectionThread connect;
     private ArrayList<String> commands;
@@ -37,20 +46,8 @@ public class ControlleRemotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controlle_remoto);
 
-        this.btnExecutar = findViewById(R.id.buttonExecutar);
-
-        this.btnCima = findViewById(R.id.buttonCima);
-        this.btnTras = findViewById(R.id.buttonTras);
-        this.btnDireita = findViewById(R.id.buttonDireita);
-        this.btnEsquerda = findViewById(R.id.buttonEsquerda);
-
-        this.btnUp = findViewById(R.id.buttonUp);
-        this.btnDown = findViewById(R.id.buttonDown);
-
-        this.btnWave = findViewById(R.id.buttonTchau);
-        this.btnShutdown = findViewById(R.id.buttonDesligar);
-
         this.commands = new ArrayList<>();
+        this.commands.add(Constants.HIGH_LEVEL);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -60,16 +57,16 @@ public class ControlleRemotoActivity extends AppCompatActivity {
         }
 
         // forward_();
-        this.btnCima.setOnClickListener(v -> this.commands.add("w"));
+        this.btnFront.setOnClickListener(v -> this.commands.add("w"));
 
         // back_();
-        this.btnTras.setOnClickListener(v -> this.commands.add("s"));
+        this.btnBack.setOnClickListener(v -> this.commands.add("s"));
 
         // turn_right_();
-        this.btnDireita.setOnClickListener(v -> this.commands.add("d"));
+        this.btnRight.setOnClickListener(v -> this.commands.add("d"));
 
         // turn_left_();
-        this.btnEsquerda.setOnClickListener(v -> this.commands.add("a"));
+        this.btnLeft.setOnClickListener(v -> this.commands.add("a"));
 
         //stand_();
         this.btnUp.setOnClickListener(v -> this.commands.add("e"));
@@ -83,7 +80,7 @@ public class ControlleRemotoActivity extends AppCompatActivity {
         // shutdown();
         this.btnShutdown.setOnClickListener(v -> this.commands.add("x"));
 
-        this.btnExecutar.setOnClickListener(v -> {
+        this.btnRun.setOnClickListener(v -> {
             sendMessage();
             this.clearCommands();
         });
@@ -100,7 +97,7 @@ public class ControlleRemotoActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         connect.cancel();
-        Toast.makeText(this,"Bluetooth desconectado!",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Bluetooth desconectado!", Toast.LENGTH_LONG).show();
     }
 
     public void clearCommands() {

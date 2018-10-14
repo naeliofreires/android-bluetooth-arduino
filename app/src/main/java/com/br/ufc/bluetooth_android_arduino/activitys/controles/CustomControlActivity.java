@@ -9,23 +9,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.br.ufc.bluetooth_android_arduino.R;
-import com.br.ufc.bluetooth_android_arduino.activitys.ConnectionThread;
+import com.br.ufc.bluetooth_android_arduino.connection.ConnectionThread;
 import com.br.ufc.bluetooth_android_arduino.constants.Constants;
+
+import butterknife.BindView;
 
 /**
  * Controller de Baixo Nível - Comandos Personalizados
  */
-public class ControlePersonalizadoActivity extends AppCompatActivity {
+public class CustomControlActivity extends AppCompatActivity {
 
     private static final String RESET_COMMANDS = "1:90&2:90&3:90&4:90&5:90&6:90&7:90&8:90";
 
     private ConnectionThread connect;
 
-    private SeekBar seekBar;
-    private String progressSeekBar;
+    @BindView(R.id.seekBarGraus)
+    SeekBar seekBar;
+    String progressSeekBar;
 
-    private TextView txtViewGrauMovimento;
-    private EditText editTxtCommands;
+    @BindView(R.id.txtViewRateMovimento)
+    TextView txtViewRateMovement;
+    @BindView(R.id.edTxtComandos)
+    EditText editTxtCommands;
 
     private Button btnAdd, btnRun, btnReset;
     private Button btnServo1, btnServo2,
@@ -74,10 +79,7 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
 
     private void instances() {
 
-        seekBar = findViewById(R.id.seekBarGraus);
-        editTxtCommands = findViewById(R.id.edTxtComandos);
         editTxtCommands.setEnabled(false);
-        txtViewGrauMovimento = findViewById(R.id.txtViewGrauMovimento);
         btnAdd = findViewById(R.id.buttonAdd);
 
         btnServo1 = findViewById(R.id.btnServe1);
@@ -90,7 +92,7 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
         btnServo8 = findViewById(R.id.btnServe8);
 
         btnReset = findViewById(R.id.btnReset); // button to reset the servs
-        btnRun = findViewById(R.id.buttonExecutar); // button de executar comandos
+        btnRun = findViewById(R.id.btnRun); // button de executar comandos
 
         clearSequenceCommands();
     }
@@ -112,7 +114,7 @@ public class ControlePersonalizadoActivity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                txtViewGrauMovimento.setText("Progress: " + progress);
+                txtViewRateMovement.setText("Progress: " + progress);
             }
 
             @Override
