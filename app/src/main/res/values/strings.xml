@@ -22,4 +22,13 @@
     <string name="comandos_selecionados">Comandos selecionados...</string>
     <string name="executar">EXECUTAR</string>
     <string name="resetar">RESETAR</string>
+    <string name="_1_serv">1 Serv</string>
+    <string name="_2_serv">2 Serv</string>
+    <string name="_3_serv">3 Serv</string>
+    <string name="_4_serv">4 Serv</string>
+    <string name="_7_serv">7 Serv</string>
+    <string name="_8_serv">8 Serv</string>
+    <string name="_6_serv">6 Serv</string>
+    <string name="_5_serv">5 Serv</string>
+    <string name="delete"><![CDATA[<]]></string>
 </resources>

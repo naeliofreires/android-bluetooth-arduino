@@ -13,15 +13,15 @@ import com.br.ufc.bluetooth_android_arduino.connection.ConnectionThread;
 import com.br.ufc.bluetooth_android_arduino.constants.Constants;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
- * Controller de Baixo Nível - Comandos Personalizados
+ * Remote Control - Low Level
  */
 public class CustomControlActivity extends AppCompatActivity {
 
     private static final String RESET_COMMANDS = "1:90&2:90&3:90&4:90&5:90&6:90&7:90&8:90";
-
-    private ConnectionThread connect;
 
     @BindView(R.id.seekBarGraus)
     SeekBar seekBar;
@@ -29,9 +29,14 @@ public class CustomControlActivity extends AppCompatActivity {
 
     @BindView(R.id.txtViewRateMovimento)
     TextView txtViewRateMovement;
+
     @BindView(R.id.edTxtComandos)
     EditText editTxtCommands;
 
+    @BindView(R.id.btnDelete)
+    Button btnDelete;
+
+    private ConnectionThread connect;
     private Button btnAdd, btnRun, btnReset;
     private Button btnServo1, btnServo2,
             btnServo3, btnServo4,
@@ -45,8 +50,12 @@ public class CustomControlActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controle_personalizado);
 
+        ButterKnife.bind(this);
+
         if (connectionBluetooth()) {
-            instances();
+
+            this.sequencesCommands = Constants.LOW_LEVEL;
+            config();
 
             actionReset();
             actionSeekBar();
@@ -61,6 +70,7 @@ public class CustomControlActivity extends AppCompatActivity {
             actionServ7();
             actionServ8();
 
+            delete();
             btnRun();
         } else
             Toast.makeText(this, "connection fail", Toast.LENGTH_LONG).show();
@@ -77,7 +87,7 @@ public class CustomControlActivity extends AppCompatActivity {
         return false;
     }
 
-    private void instances() {
+    public void config() {
 
         editTxtCommands.setEnabled(false);
         btnAdd = findViewById(R.id.buttonAdd);
@@ -91,14 +101,10 @@ public class CustomControlActivity extends AppCompatActivity {
         btnServo7 = findViewById(R.id.btnServe7);
         btnServo8 = findViewById(R.id.btnServe8);
 
-        btnReset = findViewById(R.id.btnReset); // button to reset the servs
-        btnRun = findViewById(R.id.btnRun); // button de executar comandos
+        btnReset = findViewById(R.id.btnReset);
+        btnRun = findViewById(R.id.btnRun);
 
         clearSequenceCommands();
-    }
-
-    private void updateEdTxtCommands() {
-        editTxtCommands.setText(sequencesCommands);
     }
 
     private void actionButtonAdd() {
@@ -242,6 +248,18 @@ public class CustomControlActivity extends AppCompatActivity {
 
     public void clearSequenceCommands() {
         sequencesCommands = Constants.EMPTY;
+        this.sequencesCommands = Constants.LOW_LEVEL;
+        this.updateEdTxtCommands();
+    }
+
+    public void updateEdTxtCommands() {
+        editTxtCommands.setText(sequencesCommands);
+    }
+
+    @OnClick(R.id.btnDelete)
+    public void delete() {
+        if (this.sequencesCommands.length() > 0)
+            this.sequencesCommands = this.sequencesCommands.substring(0, this.sequencesCommands.length() - 1);
         this.updateEdTxtCommands();
     }
 
@@ -249,6 +267,6 @@ public class CustomControlActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         connect.cancel();
-        Toast.makeText(this, "Bluetooth desconectado!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "bluetooth disconnected", Toast.LENGTH_LONG).show();
     }
 }

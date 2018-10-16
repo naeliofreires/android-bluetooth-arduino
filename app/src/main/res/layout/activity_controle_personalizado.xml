@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".activitys.controles.CustomControlActivity">
 
 
@@ -16,7 +17,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="35dp"
-        android:text="1 Serv" />
+        android:text="@string/_1_serv" />
 
     <Button
         android:id="@+id/btnServe2"
@@ -26,7 +27,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/btnServe1"
         android:layout_marginTop="108dp"
-        android:text="2 Serv" />
+        android:text="@string/_2_serv" />
 
     <Button
         android:id="@+id/btnServe3"
@@ -35,7 +36,7 @@
         android:layout_alignLeft="@+id/btnServe4"
         android:layout_alignStart="@+id/btnServe4"
         android:layout_alignTop="@+id/btnServe1"
-        android:text="3 Serv" />
+        android:text="@string/_3_serv" />
 
     <Button
         android:id="@+id/btnServe4"
@@ -46,7 +47,7 @@
         android:layout_alignTop="@+id/btnServe2"
         android:layout_marginLeft="145dp"
         android:layout_marginStart="145dp"
-        android:text="4 Serv" />
+        android:text="@string/_4_serv" />
 
     <Button
         android:id="@+id/btnServe7"
@@ -55,7 +56,7 @@
         android:layout_alignLeft="@+id/btnServe8"
         android:layout_alignStart="@+id/btnServe8"
         android:layout_alignTop="@+id/btnServe1"
-        android:text="7 Serv" />
+        android:text="@string/_7_serv" />
 
     <Button
         android:id="@+id/btnServe8"
@@ -66,7 +67,7 @@
         android:layout_alignTop="@+id/btnServe2"
         android:layout_marginEnd="17dp"
         android:layout_marginRight="17dp"
-        android:text="8 Serv" />
+        android:text="@string/_8_serv" />
 
     <Button
         android:id="@+id/btnServe6"
@@ -77,7 +78,7 @@
         android:layout_alignTop="@+id/btnServe2"
         android:layout_marginEnd="130dp"
         android:layout_marginRight="130dp"
-        android:text="6 Serv" />
+        android:text="@string/_6_serv" />
 
     <Button
         android:id="@+id/btnServe5"
@@ -86,24 +87,25 @@
         android:layout_alignLeft="@+id/btnServe6"
         android:layout_alignStart="@+id/btnServe6"
         android:layout_alignTop="@+id/btnServe1"
-        android:text="5 Serv" />
+        android:text="@string/_5_serv" />
 
     <EditText
         android:id="@+id/edTxtComandos"
         android:layout_width="401dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="@string/comandos_selecionados"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/btnRun"
@@ -114,25 +116,29 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="26dp"
         android:layout_marginRight="26dp"
+        android:background="@drawable/button_run"
         android:text="@string/executar" />
 
     <Button
         android:id="@+id/buttonAdd"
-        android:layout_width="66dp"
-        android:layout_height="32dp"
+        android:layout_width="68dp"
+        android:layout_height="37dp"
         android:layout_alignEnd="@+id/btnRun"
-        android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/btnRun"
-        android:layout_marginBottom="112dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-19dp"
+        android:layout_marginRight="-19dp"
+        android:layout_marginBottom="110dp"
+        android:background="@drawable/button_wave"
         android:text="+" />
 
     <SeekBar
         android:id="@+id/seekBarGraus"
-        android:layout_width="456dp"
+        android:layout_width="404dp"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/btnServe1"
         android:layout_alignLeft="@+id/btnServe1"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/btnServe1"
         android:layout_marginBottom="119dp" />
 
     <TextView
@@ -158,6 +164,19 @@
         android:layout_marginRight="247dp"
         android:layout_marginBottom="235dp"
         android:text="@string/resetar" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="72dp"
+        android:layout_height="37dp"
+        android:layout_above="@+id/buttonAdd"
+        android:layout_alignStart="@+id/btnServe6"
+        android:layout_alignLeft="@+id/btnServe6"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginBottom="-38dp"
+        android:background="@drawable/button_off"
+        android:text="@string/delete" />
 
 
 </RelativeLayout>

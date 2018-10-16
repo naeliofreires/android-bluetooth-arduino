@@ -12,29 +12,38 @@ import com.br.ufc.bluetooth_android_arduino.constants.Constants;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
- * Controller de Alto Nível - Comandos já pré-definidos
+ * Remote Control - High Level
  */
 public class RemoteControlActivity extends AppCompatActivity {
 
     @BindView(R.id.btnFront)
     Button btnFront;
+
     @BindView(R.id.btnBack)
     Button btnBack;
+
     @BindView(R.id.btnRight)
     Button btnRight;
+
     @BindView(R.id.btnLeft)
     Button btnLeft;
+
     @BindView(R.id.buttonUp)
     Button btnUp;
+
     @BindView(R.id.buttonDown)
     Button btnDown;
 
     @BindView(R.id.btnWave)
     Button btnWave;
+
     @BindView(R.id.btnShutdown)
     Button btnShutdown;
+
     @BindView(R.id.btnRun)
     Button btnRun;
 
@@ -46,6 +55,7 @@ public class RemoteControlActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controlle_remoto);
 
+        ButterKnife.bind(this);
         this.commands = new ArrayList<>();
         this.commands.add(Constants.HIGH_LEVEL);
 
@@ -55,42 +65,61 @@ public class RemoteControlActivity extends AppCompatActivity {
             connect = new ConnectionThread(address);
             connect.start();
         }
+    }
 
-        // forward_();
-        this.btnFront.setOnClickListener(v -> this.commands.add("w"));
+    @OnClick(R.id.btnFront)
+    public void front() { // forward_()
+        this.commands.add("w");
+    }
 
-        // back_();
-        this.btnBack.setOnClickListener(v -> this.commands.add("s"));
+    @OnClick(R.id.btnBack)
+    public void back() {// back_();
+        this.commands.add("s");
+    }
 
-        // turn_right_();
-        this.btnRight.setOnClickListener(v -> this.commands.add("d"));
+    @OnClick(R.id.btnRight)
+    public void right() {// turn_right_();
+        this.commands.add("d");
+    }
 
-        // turn_left_();
-        this.btnLeft.setOnClickListener(v -> this.commands.add("a"));
+    @OnClick(R.id.btnLeft)
+    public void left() {// turn_left_();
+        this.commands.add("a");
+    }
 
-        //stand_();
-        this.btnUp.setOnClickListener(v -> this.commands.add("e"));
+    @OnClick(R.id.buttonUp)
+    public void up() {// stand_();
+        this.commands.add("e");
+    }
 
-        // sit_();
-        this.btnDown.setOnClickListener(v -> this.commands.add("q"));
+    @OnClick(R.id.buttonDown)
+    public void down() {// sit();
+        this.commands.add("q");
+    }
 
-        // wave_();
-        this.btnWave.setOnClickListener(v -> this.commands.add("b"));
+    @OnClick(R.id.btnWave)
+    public void wave() { // wave();
+        this.commands.add("b");
+    }
 
-        // shutdown();
-        this.btnShutdown.setOnClickListener(v -> this.commands.add("x"));
+    @OnClick(R.id.btnShutdown)
+    public void shutdown() { // shutdown();
+        this.commands.add("x");
+    }
 
-        this.btnRun.setOnClickListener(v -> {
-            sendMessage();
-            this.clearCommands();
-        });
+    @OnClick(R.id.btnRun)
+    public void run() {
+        sendMessage();
+        this.clearCommands();
     }
 
     public void sendMessage() {
-        for (String srt : this.commands) {
-            byte[] data = srt.getBytes();
-            this.connect.write(data);
-        }
+        String commands = "";
+        for (String str : this.commands)
+            commands = commands + str;
+
+        byte[] data = commands.getBytes();
+        this.connect.write(data);
     }
 
     @Override
@@ -102,5 +131,6 @@ public class RemoteControlActivity extends AppCompatActivity {
 
     public void clearCommands() {
         this.commands = new ArrayList<>();
+        this.commands.add(Constants.HIGH_LEVEL);
     }
 }
