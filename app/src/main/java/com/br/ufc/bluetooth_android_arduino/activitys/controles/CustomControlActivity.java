@@ -2,6 +2,7 @@ package com.br.ufc.bluetooth_android_arduino.activitys.controles;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -36,13 +37,33 @@ public class CustomControlActivity extends AppCompatActivity {
     @BindView(R.id.btnDelete)
     Button btnDelete;
 
-    private ConnectionThread connect;
-    private Button btnAdd, btnRun, btnReset;
-    private Button btnServo1, btnServo2,
-            btnServo3, btnServo4,
-            btnServo5, btnServo6,
-            btnServo7, btnServo8;
 
+    @BindView(R.id.buttonAdd)
+    Button btnAdd;
+    @BindView(R.id.btnRun)
+    Button btnRun;
+    @BindView(R.id.btnReset)
+    Button btnReset;
+
+    @BindView(R.id.btnServe1)
+    Button btnServo1;
+    @BindView(R.id.btnServe2)
+    Button btnServo2;
+    @BindView(R.id.btnServe3)
+    Button btnServo3;
+    @BindView(R.id.btnServe4)
+    Button btnServo4;
+    @BindView(R.id.btnServe5)
+    Button btnServo5;
+    @BindView(R.id.btnServe6)
+    Button btnServo6;
+    @BindView(R.id.btnServe7)
+    Button btnServo7;
+    @BindView(R.id.btnServe8)
+    Button btnServo8;
+
+
+    private ConnectionThread connect;
     private String sequencesCommands;
 
     @Override
@@ -54,24 +75,12 @@ public class CustomControlActivity extends AppCompatActivity {
 
         if (connectionBluetooth()) {
 
+            editTxtCommands.setEnabled(false);
             this.sequencesCommands = Constants.LOW_LEVEL;
-            config();
 
-            actionReset();
             actionSeekBar();
-            actionButtonAdd();
+            clearSequenceCommands();
 
-            actionServ1();
-            actionServ2();
-            actionServ3();
-            actionServ4();
-            actionServ5();
-            actionServ6();
-            actionServ7();
-            actionServ8();
-
-            delete();
-            btnRun();
         } else
             Toast.makeText(this, "connection fail", Toast.LENGTH_LONG).show();
     }
@@ -87,36 +96,17 @@ public class CustomControlActivity extends AppCompatActivity {
         return false;
     }
 
-    public void config() {
-
-        editTxtCommands.setEnabled(false);
-        btnAdd = findViewById(R.id.buttonAdd);
-
-        btnServo1 = findViewById(R.id.btnServe1);
-        btnServo2 = findViewById(R.id.btnServe2);
-        btnServo3 = findViewById(R.id.btnServe3);
-        btnServo4 = findViewById(R.id.btnServe4);
-        btnServo5 = findViewById(R.id.btnServe5);
-        btnServo6 = findViewById(R.id.btnServe6);
-        btnServo7 = findViewById(R.id.btnServe7);
-        btnServo8 = findViewById(R.id.btnServe8);
-
-        btnReset = findViewById(R.id.btnReset);
-        btnRun = findViewById(R.id.btnRun);
-
-        clearSequenceCommands();
-    }
-
-    private void actionButtonAdd() {
+    @OnClick(R.id.buttonAdd)
+    public void actionAdd() {
         btnAdd.setOnClickListener(v -> {
             if (!sequencesCommands.isEmpty())
                 sequencesCommands += progressSeekBar;
             seekBar.setProgress(0);
-            updateEdTxtCommands();
+            updateCommands();
         });
     }
 
-    private void actionSeekBar() {
+    public void actionSeekBar() {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -135,108 +125,86 @@ public class CustomControlActivity extends AppCompatActivity {
         });
     }
 
-    private void actionServ1() {
-        btnServo1.setOnClickListener(v -> {
-
-            if (sequencesCommands.isEmpty())
-                sequencesCommands += "1:";
-            else
-                sequencesCommands += "&1:";
-
-            updateEdTxtCommands();
-        });
+    @OnClick(R.id.btnServe1)
+    public void actionServ1() {
+        if (sequencesCommands.length() == 1)
+            sequencesCommands += "1:";
+        else
+            sequencesCommands += "&1:";
+        updateCommands();
     }
 
-    private void actionServ2() {
-        btnServo2.setOnClickListener(v -> {
-
-            if (sequencesCommands.isEmpty())
-                sequencesCommands += "2:";
-            else
-                sequencesCommands += "&2:";
-
-            updateEdTxtCommands();
-        });
+    @OnClick(R.id.btnServe2)
+    public void actionServ2() {
+        if (sequencesCommands.length() == 1)
+            sequencesCommands += "2:";
+        else
+            sequencesCommands += "&2:";
+        updateCommands();
     }
 
-    private void actionServ3() {
-        btnServo3.setOnClickListener(v -> {
-
-            if (sequencesCommands.isEmpty())
-                sequencesCommands += "3:";
-            else
-                sequencesCommands += "&3:";
-
-            updateEdTxtCommands();
-        });
+    @OnClick(R.id.btnServe3)
+    public void actionServ3() {
+        if (sequencesCommands.length() == 1)
+            sequencesCommands += "3:";
+        else
+            sequencesCommands += "&3:";
+        updateCommands();
     }
 
-    private void actionServ4() {
-        btnServo4.setOnClickListener(v -> {
-
-            if (sequencesCommands.isEmpty())
-                sequencesCommands += "4:";
-            else
-                sequencesCommands += "&4:";
-
-            updateEdTxtCommands();
-        });
+    @OnClick(R.id.btnServe4)
+    public void actionServ4() {
+        if (sequencesCommands.length() == 1)
+            sequencesCommands += "4:";
+        else
+            sequencesCommands += "&4:";
+        updateCommands();
     }
 
-    private void actionServ5() {
-        btnServo5.setOnClickListener(v -> {
-
-            if (sequencesCommands.isEmpty())
-                sequencesCommands += "5:";
-            else
-                sequencesCommands += "&5:";
-
-            updateEdTxtCommands();
-        });
+    @OnClick(R.id.btnServe5)
+    public void actionServ5() {
+        if (sequencesCommands.length() == 1)
+            sequencesCommands += "5:";
+        else
+            sequencesCommands += "&5:";
+        updateCommands();
     }
 
-    private void actionServ6() {
-        btnServo6.setOnClickListener(v -> {
-
-            if (sequencesCommands.isEmpty())
-                sequencesCommands += "6:";
-            else
-                sequencesCommands += "&7:";
-
-            updateEdTxtCommands();
-        });
+    @OnClick(R.id.btnServe6)
+    public void actionServ6() {
+        if (sequencesCommands.length() == 1)
+            sequencesCommands += "6:";
+        else
+            sequencesCommands += "&7:";
+        updateCommands();
     }
 
-    private void actionServ7() {
-        btnServo7.setOnClickListener(v -> {
-
-            if (sequencesCommands.isEmpty())
-                sequencesCommands += "7:";
-            else
-                sequencesCommands += "&7:";
-
-            updateEdTxtCommands();
-        });
+    @OnClick(R.id.btnServe7)
+    public void actionServ7() {
+        if (sequencesCommands.length() == 1)
+            sequencesCommands += "7:";
+        else
+            sequencesCommands += "&7:";
+        updateCommands();
     }
 
-    private void actionServ8() {
-        btnServo8.setOnClickListener(v -> {
-
-            if (sequencesCommands.isEmpty())
-                sequencesCommands += "8:";
-            else
-                sequencesCommands += "&8:";
-
-            updateEdTxtCommands();
-        });
+    @OnClick(R.id.btnServe8)
+    public void actionServ8() {
+        if (sequencesCommands.length() == 1)
+            sequencesCommands += "8:";
+        else
+            sequencesCommands += "&8:";
+        updateCommands();
     }
 
-    private void actionReset() {
-        btnReset.setOnClickListener(v -> sendMessage(RESET_COMMANDS));
+    @OnClick(R.id.btnReset)
+    public void actionReset() {
+        sendMessage(RESET_COMMANDS);
     }
 
-    private void btnRun() {
-        btnRun.setOnClickListener(v -> sendMessage(sequencesCommands));
+    @OnClick(R.id.btnRun)
+    public void actionRun() {
+        sendMessage(sequencesCommands);
     }
 
     public void sendMessage(String msg) {
@@ -249,18 +217,18 @@ public class CustomControlActivity extends AppCompatActivity {
     public void clearSequenceCommands() {
         sequencesCommands = Constants.EMPTY;
         this.sequencesCommands = Constants.LOW_LEVEL;
-        this.updateEdTxtCommands();
+        this.updateCommands();
     }
 
-    public void updateEdTxtCommands() {
+    public void updateCommands() {
         editTxtCommands.setText(sequencesCommands);
     }
 
     @OnClick(R.id.btnDelete)
     public void delete() {
-        if (this.sequencesCommands.length() > 0)
+        if (this.sequencesCommands.length() > 1)
             this.sequencesCommands = this.sequencesCommands.substring(0, this.sequencesCommands.length() - 1);
-        this.updateEdTxtCommands();
+        this.updateCommands();
     }
 
     @Override
