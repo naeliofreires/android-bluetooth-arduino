@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/base"
     tools:context=".activitys.controles.CustomControlActivity">
 
 
@@ -134,7 +134,7 @@
 
     <SeekBar
         android:id="@+id/seekBarGraus"
-        android:layout_width="404dp"
+        android:layout_width="342dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/btnServe1"
         android:layout_alignLeft="@+id/btnServe1"
@@ -150,19 +150,19 @@
     <Button
         android:id="@+id/btnReset"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="47dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="257dp"
-        android:layout_marginLeft="257dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="247dp"
-        android:layout_marginRight="247dp"
-        android:layout_marginBottom="235dp"
+        android:layout_marginStart="243dp"
+        android:layout_marginLeft="243dp"
+        android:layout_marginTop="71dp"
+        android:layout_marginEnd="230dp"
+        android:layout_marginRight="230dp"
+        android:layout_marginBottom="177dp"
         android:text="@string/reset" />
 
     <Button
@@ -172,9 +172,9 @@
         android:layout_above="@+id/buttonAdd"
         android:layout_alignStart="@+id/btnServe6"
         android:layout_alignLeft="@+id/btnServe6"
-        android:layout_marginStart="66dp"
-        android:layout_marginLeft="66dp"
-        android:layout_marginBottom="-38dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginBottom="-37dp"
         android:background="@drawable/button_off"
         android:text="@string/delete" />
 

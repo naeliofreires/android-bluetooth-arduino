@@ -21,7 +21,7 @@
     <string name="personalizedControl">Controle Personalizado</string>
     <string name="comandos_selecionados">Comandos selecionados...</string>
     <string name="execute">EXECUTAR</string>
-    <string name="reset">RESETAR</string>
+    <string name="reset"> X </string>
     <!--Servs-->
     <string name="_1_serv">1 Serv</string>
     <string name="_2_serv">2 Serv</string>

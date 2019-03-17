@@ -7,7 +7,7 @@
     <color name="primary_dark_material_dark">#148cd7</color>
     <!--base-->
     <color name="white">#fff</color>
-    <color name="base">#d4dedf</color>
+    <color name="base">#838d8e</color>
     <color name="green_base">#4fe15b</color>
     <color name="blue_base">#46e1f5</color>
 </resources>
