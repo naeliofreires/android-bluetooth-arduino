@@ -117,7 +117,7 @@
         android:layout_marginEnd="26dp"
         android:layout_marginRight="26dp"
         android:background="@drawable/button_run"
-        android:text="@string/executar" />
+        android:text="@string/execute" />
 
     <Button
         android:id="@+id/buttonAdd"
@@ -163,7 +163,7 @@
         android:layout_marginEnd="247dp"
         android:layout_marginRight="247dp"
         android:layout_marginBottom="235dp"
-        android:text="@string/resetar" />
+        android:text="@string/reset" />
 
     <Button
         android:id="@+id/btnDelete"

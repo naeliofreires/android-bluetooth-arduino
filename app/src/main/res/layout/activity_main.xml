@@ -1,49 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.br.ufc.bluetooth_android_arduino.activitys.MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="369dp"
-        android:layout_marginTop="100dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
 
-        <Button
-            android:id="@+id/btnControleRemoto"
-            android:layout_width="match_parent"
-            android:layout_height="87dp"
-            android:layout_marginTop="15dp"
-            android:text="@string/controle_remoto" />
+    <Button
+        android:id="@+id/btnRemoteControl"
+        android:layout_width="@dimen/width_button_home"
+        android:layout_height="@dimen/height_button_home"
 
-        <Button
-            android:id="@+id/btnControlePersonalizado"
-            android:layout_width="match_parent"
-            android:layout_height="87dp"
-            android:layout_marginTop="15dp"
-            android:text="@string/controle_personalizado" />
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="225dp"
 
-        <Button
-            android:id="@+id/buttonHabilitarVisibilidade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/habilitar_visibilidade" />
+        android:background="@color/green_base"
+        android:fontFamily="@string/fontFamily"
+        android:text="@string/remoteControl"
+        android:textColor="@color/white"
+        android:textStyle="bold|italic"
+        android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/buttonProcurarDispositivos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/buscar_dispositivos" />
+    <Button
+        android:id="@+id/btnCustomControl"
+        android:layout_width="@dimen/width_button_home"
+        android:layout_height="@dimen/height_button_home"
 
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="316dp"
 
-</android.support.constraint.ConstraintLayout>
+        android:textStyle="bold|italic"
+        android:background="@color/green_base"
+        android:fontFamily="@string/fontFamily"
+        android:text="@string/personalizedControl"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnEnableVisibility"
+        android:layout_width="@dimen/width_button_home"
+        android:layout_height="@dimen/height_button_home"
+
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="134dp"
+
+        android:textStyle="bold|italic"
+        android:background="@color/blue_base"
+        android:fontFamily="@string/fontFamily"
+        android:text="@string/habilitar_visibilidade"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnSearchDevices"
+        android:layout_width="@dimen/width_button_home"
+        android:layout_height="@dimen/height_button_home"
+
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+
+        android:textStyle="bold|italic"
+        android:layout_marginTop="40dp"
+        android:background="@color/blue_base"
+        android:fontFamily="@string/fontFamily"
+        android:text="@string/buscar_dispositivos"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>

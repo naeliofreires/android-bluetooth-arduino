@@ -52,7 +52,9 @@ public class ConnectionThread extends Thread {
                 btSocket = btServerSocket.accept();
 
                 // if connection OK, free socket
-                if (btSocket != null) btServerSocket.close();
+                if (btSocket != null) {
+                    btServerSocket.close();
+                }
 
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -67,8 +69,9 @@ public class ConnectionThread extends Thread {
 
                 btAdapter.cancelDiscovery();
 
-                if (btSocket != null)
+                if (btSocket != null){
                     btSocket.connect();
+                }
 
             } catch (IOException ex) {
                 ex.printStackTrace();

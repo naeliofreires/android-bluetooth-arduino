@@ -15,13 +15,14 @@
     <string name="dispositivos_pareados">Dispositivos Pareados</string>
     <string name="buscar_dispositivos">Buscar Dispositivos</string>
     <string name="habilitar_visibilidade">Habilitar Visibilidade</string>
-    <string name="conectar">Conectar</string>
-    <string name="controle_remoto">Controle Remoto</string>
-    <string name="title_activity_controle_personalizado">Controle Personalizado</string>
-    <string name="controle_personalizado">Controle Personalizado</string>
+    <string name="connect">Conectar</string>
+    <string name="remoteControl">Controle Remoto</string>
+    <string name="titleActivityPersonalizedControl">Controle Personalizado</string>
+    <string name="personalizedControl">Controle Personalizado</string>
     <string name="comandos_selecionados">Comandos selecionados...</string>
-    <string name="executar">EXECUTAR</string>
-    <string name="resetar">RESETAR</string>
+    <string name="execute">EXECUTAR</string>
+    <string name="reset">RESETAR</string>
+    <!--Servs-->
     <string name="_1_serv">1 Serv</string>
     <string name="_2_serv">2 Serv</string>
     <string name="_3_serv">3 Serv</string>
@@ -31,4 +32,6 @@
     <string name="_6_serv">6 Serv</string>
     <string name="_5_serv">5 Serv</string>
     <string name="delete"><![CDATA[<]]></string>
+    <!--Style-->
+    <string name="fontFamily">serif-monospace</string>
 </resources>

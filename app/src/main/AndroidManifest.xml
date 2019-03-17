@@ -17,7 +17,8 @@
         android:theme="@style/AppTheme">
 
         <!-- the first activity that will open -->
-        <activity android:name=".splash.SplashActivity">
+        <activity android:name=".splash.SplashActivity"
+            android:theme="@style/MeuTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,7 +40,7 @@
 
         <activity
             android:name=".activitys.controles.CustomControlActivity"
-            android:label="@string/title_activity_controle_personalizado"
+            android:label="@string/titleActivityPersonalizedControl"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

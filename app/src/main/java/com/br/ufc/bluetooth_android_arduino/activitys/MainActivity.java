@@ -9,7 +9,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
@@ -53,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         this.configurationBluetooth();
 
-        this.btnControleRemoto = findViewById(R.id.btnControleRemoto);
-        this.btnControlePersonalizado = findViewById(R.id.btnControlePersonalizado);
+        this.btnControleRemoto = findViewById(R.id.btnRemoteControl);
+        this.btnControlePersonalizado = findViewById(R.id.btnCustomControl);
 
         this.devicesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
@@ -85,14 +84,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void procurarDispositivos() {
-        this.btnProcurarDispositivos = findViewById(R.id.buttonProcurarDispositivos);
+        this.btnProcurarDispositivos = findViewById(R.id.btnSearchDevices);
         // this.btnProcurarDispositivos.setVisibility(View.INVISIBLE); // escondendo botão 'procurar dispositivos'
         this.btnProcurarDispositivos.setOnClickListener(v -> discoverDevices());
     }
 
     public void habilitarVisibilidade() {
-        this.btnHabilitarVisibilidade = findViewById(R.id.buttonHabilitarVisibilidade);
-        this.btnHabilitarVisibilidade.setVisibility(View.INVISIBLE);
+        this.btnHabilitarVisibilidade = findViewById(R.id.btnEnableVisibility);
+        // this.btnHabilitarVisibilidade.setVisibility(View.INVISIBLE);
         this.btnHabilitarVisibilidade.setOnClickListener(v -> enableVisibility());
     }
 
